@@ -1,0 +1,14 @@
+.timeline {
+  &__post {
+    &-header {
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      span {
+        padding-left: 0.5rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+// @import '../assets/images/landingpage/mockup.png';
+
+.auth {
+  margin: 6rem;
+
+  .auth__mockup {
+    height: 45rem;
+    background-image: url('../assets/images/landingpage/mockup.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    // border: 1px solid black;
+  }
+
+  .auth__form {
+    position: relative;
+    height: 45rem;
+    border: 1px solid black;
+    overflow: hidden;
+
+    .auth__form-login {
+      height: 100%;
+      position: absolute;
+      left: 0%;
+      right: 0%;
+      transition: all 0.5s;
+    }
+    .auth__form-signup {
+      height: 100%;
+      position: absolute;
+      left: 100%;
+      right: -100%;
+      transition: all 0.5s;
+    }
+  }
+}
