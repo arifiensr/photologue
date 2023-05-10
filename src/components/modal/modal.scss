@@ -1,0 +1,25 @@
+.modal {
+  padding: 0px !important;
+  
+  .follow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+    }
+
+    span {
+      margin: 0 1rem;
+    }
+    button {
+      justify-self: end;
+    }
+  }
+  &:nth-last-child(1) {
+    margin-bottom: 0rem;
+  }
+}

@@ -11,7 +11,7 @@ export default function App() {
   const { isLogin } = useContext(GlobalContext)
   return (
     <Routes>
-      {!isLogin ? <Route path="/" element={<Auth />} /> : <Route path="/" element={<Home />} />}
+      {!isLogin ? <Route path="/" element={<Auth />} /> : <Route path="/*" element={<Home />} />}
       <Route path="/apitest" element={<ApiTest />} />
     </Routes>
   )

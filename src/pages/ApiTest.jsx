@@ -3,8 +3,8 @@ import psApi from '../api/psApi'
 import { Link } from 'react-router-dom'
 
 export default function ApiTest() {
-  const isLogin = localStorage.getItem('token')
-  const token = localStorage.getItem('token')
+  const isLogin = JSON.parse(localStorage.getItem('token'))
+  const token = JSON.parse(localStorage.getItem('token'))
   const user = JSON.parse(localStorage.getItem('user'))
 
   const [login, setLogin] = useState(false)
@@ -51,7 +51,7 @@ export default function ApiTest() {
 
     // * API Login User
     const login = await psApi.loginUser(email, password)
-    localStorage.setItem('token', login.token)
+    localStorage.setItem('token', JSON.stringify(login.token))
 
     const token = login.token
 
@@ -68,13 +68,13 @@ export default function ApiTest() {
     loggedWebsiteRef.current = loggedUserData.data.website
 
     localStorage.setItem('user', JSON.stringify(loggedUserData.data))
-    console.log(loggedUserData.data)
+    // console.log(loggedUserData.data)
     setLoggedUser(loggedUserData.data)
 
     // * API Get My Following
 
     const myFollowingData = await psApi.getMyFollowing(token, { params: { size: 10, page: 1 } })
-    console.log(myFollowingData.data.users)
+    // console.log(myFollowingData.data.users)
 
     setLogin(true)
 
@@ -100,7 +100,7 @@ export default function ApiTest() {
 
     // console.log(nameRef.current.value)
     const updateUserProfile = await psApi.updateUserProfile(data, token)
-    console.log(updateUserProfile)
+    // console.log(updateUserProfile)
 
     // * Update User Data
     const loggedUser = await psApi.getLoggedUser(token)
@@ -112,7 +112,7 @@ export default function ApiTest() {
 
     // * API Logout User
     const logout = await psApi.logoutUser(token)
-    console.log(logout)
+    // console.log(logout)
     localStorage.clear()
     window.location.reload()
   }
@@ -136,8 +136,8 @@ export default function ApiTest() {
     // const combines = await [dataUser.data, {followers: followingByUserIdData.data.users}]
     // const results = await Promise.all(combines)
     // dataUser.data = [...dataUser.data, {followers: followingByUserIdData.data.users}]
-    console.log(followingByUserIdData)
-    console.log(combines)
+    // console.log(followingByUserIdData)
+    // console.log(combines)
     setUserById(combines)
   }
 
@@ -148,7 +148,7 @@ export default function ApiTest() {
       userIdFollow: id,
     }
     const responseFollow = await psApi.followUser(data, token)
-    console.log(responseFollow)
+    // console.log(responseFollow)
 
     // * Update User Data
     const loggedUser = await psApi.getLoggedUser(token)
@@ -159,7 +159,7 @@ export default function ApiTest() {
     e.preventDefault()
 
     const responseUnfollow = await psApi.unfollowUser(id, token)
-    console.log(responseUnfollow)
+    // console.log(responseUnfollow)
 
     // * Update User Data
     const loggedUser = await psApi.getLoggedUser(token)
@@ -184,7 +184,7 @@ export default function ApiTest() {
     // console.log(imageUrl)
 
     const data = {
-      imageUrl:imageUrl.url,
+      imageUrl: imageUrl.url,
       caption: createPostCaptionRef.current.value,
     }
 
@@ -220,6 +220,7 @@ export default function ApiTest() {
     const postId = id
 
     const getPostId = await psApi.getPostById(postId, token)
+    console.log(getPostId.data)
     setPostById(getPostId.data)
   }
 
@@ -497,7 +498,7 @@ export default function ApiTest() {
                               <div className="row">
                                 <h1>Explore Post</h1>
                                 {explorePost.map((item, i) => {
-                                  console.log(item)
+                                  // console.log(item)
                                   return (
                                     <div key={i} className="col-6 h-100">
                                       <img src={item.imageUrl} alt="" className="w-100 h-100 object-fit-contain" />
@@ -507,15 +508,16 @@ export default function ApiTest() {
                                       <p>
                                         <span className="fw-bold">{item.user?.username}</span> {item.caption}
                                       </p>
-                                      {item.comments && item.comments.map((comment, i) => {
-                                        return (
-                                          <>
-                                            <p>
-                                              <span className="fw-bold">{comment.user.username}</span> {comment.comment}
-                                            </p>
-                                          </>
-                                        )
-                                      })}
+                                      {item.comments &&
+                                        item.comments.map((comment, i) => {
+                                          return (
+                                            <>
+                                              <p>
+                                                <span className="fw-bold">{comment.user.username}</span> {comment.comment}
+                                              </p>
+                                            </>
+                                          )
+                                        })}
                                       <p>ID Post: {item.id}</p>
                                     </div>
                                   )
@@ -708,17 +710,18 @@ export default function ApiTest() {
                                         <img src={postById.imageUrl} className="w-100 h-100 object-fit-contain" alt="" />
                                         <p>Likes</p>
                                         <p>
-                                          <span className="fw-bold">{postById.user.username}</span> {postById.caption}
+                                          <span className="fw-bold">{postById.user?.username}</span> {postById.caption}
                                         </p>
-                                        {postById.comments && postById.comments.map((comment, i) => {
-                                        return (
-                                          <>
-                                            <p>
-                                              <span className="fw-bold">{comment.user.username}</span> {comment.comment}
-                                            </p>
-                                          </>
-                                        )
-                                      })}
+                                        {postById.comments &&
+                                          postById.comments.map((comment, i) => {
+                                            return (
+                                              <>
+                                                <p>
+                                                  <span className="fw-bold">{comment.user?.username}</span> {comment.comment}
+                                                </p>
+                                              </>
+                                            )
+                                          })}
                                         <p>ID: {postById.id}</p>
                                       </div>
                                     </div>
@@ -821,15 +824,16 @@ export default function ApiTest() {
                                       <p>
                                         <span className="fw-bold">{postById.user.username}</span> {postById.caption}
                                       </p>
-                                      {postById.comments && postById.comments.map((comment, i) => {
-                                        return (
-                                          <>
-                                            <p>
-                                              <span className="fw-bold">{comment.user.username}</span> {comment.comment}
-                                            </p>
-                                          </>
-                                        )
-                                      })}
+                                      {postById.comments &&
+                                        postById.comments.map((comment, i) => {
+                                          return (
+                                            <>
+                                              <p>
+                                                <span className="fw-bold">{comment.user.username}</span> {comment.comment}
+                                              </p>
+                                            </>
+                                          )
+                                        })}
                                       <p>ID: {postById.id}</p>
 
                                       {/* {console.log(postById)} */}

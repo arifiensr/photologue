@@ -28,6 +28,8 @@ export default function Signup() {
     }
 
     const register = await psApi.registerUser(data)
+    alert(register.message)
+    
     console.log(register)
   }
 
@@ -48,15 +50,15 @@ export default function Signup() {
                   <label htmlFor="floatingUsername">Username</label>
                 </div>
                 <div className="form-floating mb-2">
-                  <input ref={registerEmailRef} type="text" className="form-control" placeholder="Email" id="floatingEmail" required />
+                  <input ref={registerEmailRef} type="email" className="form-control" placeholder="Email" id="floatingEmail" required />
                   <label htmlFor="floatingEmail">Email</label>
                 </div>
                 <div className="form-floating mb-2">
-                  <input ref={registerPasswordRef} type="text" className="form-control" placeholder="Password" id="floatingPassword" required />
+                  <input ref={registerPasswordRef} type="password" className="form-control" placeholder="Password" id="floatingPassword" required />
                   <label htmlFor="floatingPassword">Password</label>
                 </div>
                 <div className="form-floating mb-2">
-                  <input ref={registerPasswordRepeatRef} type="text" className="form-control" placeholder="PasswordRepeat" id="floatingPasswordRepeat" required />
+                  <input ref={registerPasswordRepeatRef} type="password" className="form-control" placeholder="PasswordRepeat" id="floatingPasswordRepeat" required />
                   <label htmlFor="floatingPasswordRepeat">Password Repeat</label>
                 </div>
                 <div className="form-floating mb-2">
@@ -64,7 +66,7 @@ export default function Signup() {
                   <label htmlFor="floatingProfilePictureUrl">Profile Picture URL</label>
                 </div>
                 <div className="form-floating mb-2">
-                  <input ref={registerPhoneNumberRef} type="text" className="form-control" placeholder="PhoneNumber" id="floatingPhoneNumber" required />
+                  <input ref={registerPhoneNumberRef} type="number" className="form-control" placeholder="PhoneNumber" id="floatingPhoneNumber" required />
                   <label htmlFor="floatingPhoneNumber">Phone Number</label>
                 </div>
                 <div className="form-floating mb-2">
