@@ -20,14 +20,28 @@ export default function Timeline() {
     getExplorePost()
 
     async function getFollowingPost() {
-      const followingPost = await psApi.getFollowingPost(token, { params: { size: 20, page: 1 } })
+      const followingPost = await psApi.getFollowingPost(token, { params: { size: 30, page: 1 } })
       setFollowingPost(followingPost.data.posts)
     }
     getFollowingPost()
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry)
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show2')
+        } else {
+          entry.target.classList.remove('show2')
+        }
+      })
+    })
+
+    const hiddenElements = document.querySelectorAll('.hidden2')
+    hiddenElements.forEach((el) => observer.observe(el))
   }, [])
 
   return (
-    <section id="timeline" className="timeline">
+    <section id="timeline" className="timeline hidden2">
       <div className="container">
         <div className="row">
           <div className="col-12 border border-1 border-black rounded shadow p-0">

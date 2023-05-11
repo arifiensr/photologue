@@ -5,12 +5,14 @@ import Footer from '../components/footer/Footer'
 import { Link, Outlet, Route, Routes } from 'react-router-dom'
 import Profile from '../components/profile/Profile'
 import EditProfile from '../components/profile/EditProfile'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { GlobalContext } from '../config/GlobalState'
 import Auth from './Auth'
 
 export default function Home() {
   const { isLogin } = useContext(GlobalContext)
+
+
 
   return (
     <>

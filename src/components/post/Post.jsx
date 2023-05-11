@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
 import Modal from '../modal/Modal'
 import './post.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import psApi from '../../api/psApi'
 
 export default function Post({ post }) {
-  
   const [isLike, setIsLike] = useState(post.isLike)
   const token = JSON.parse(localStorage.getItem('token'))
 
@@ -33,6 +32,22 @@ export default function Post({ post }) {
     setIsLike(false)
   }
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry)
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show')
+        } else {
+          entry.target.classList.remove('show')
+        }
+      })
+    })
+
+    const hiddenElements = document.querySelectorAll('.timeline__post')
+    hiddenElements.forEach((el) => observer.observe(el))
+  }, [])
+
   return (
     <>
       <div className="col-12 h-100 border-bottom pt-2 timeline__post">
@@ -50,9 +65,10 @@ export default function Post({ post }) {
               <span className="fw-normal">Be first to </span>like this
             </>
           ) : (
-            <>{post.totalLikes} {post.totalLikes === 1 ? 'like' : 'likes'}</>
+            <>
+              {post.totalLikes} {post.totalLikes === 1 ? 'like' : 'likes'}
+            </>
           )}{' '}
-          
         </p>
         <p>
           <span className="fw-bold">{post.user?.username}</span> {post.caption}

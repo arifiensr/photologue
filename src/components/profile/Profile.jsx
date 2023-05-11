@@ -115,7 +115,7 @@ export default function Profile() {
                     <div className="profile__header-caption-3 mt-3">
                       {userById.name && <p className="fw-bold">{userById.name}</p>}
                       {userById.bio && <p>{userById.bio}</p>}
-                      {userById.website && <a href="">{userById.website}</a>}
+                      {userById.website && <a href={userById.website} target='_blank'>{userById.website}</a>}
                       <p></p>
                     </div>
                   </div>

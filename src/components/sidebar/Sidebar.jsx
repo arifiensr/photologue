@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './sidebar.scss'
 import GLightbox from 'glightbox'
 
@@ -9,9 +10,25 @@ export default function Sidebar() {
     // autoplayVideos: true,
   })
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry)
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show')
+        } else {
+          entry.target.classList.remove('show')
+        }
+      })
+    })
+
+    const hiddenElements = document.querySelectorAll('.hidden')
+    hiddenElements.forEach((el) => observer.observe(el))
+  }, [])
+
   return (
     <>
-      <section id="sidebar" className="sidebar">
+      <section id="sidebar" className="sidebar hidden">
         <div className="container">
           <div className="row">
             <div className="col-12 border border-black rounded shadow">
