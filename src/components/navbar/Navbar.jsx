@@ -41,7 +41,9 @@ export default function Navbar() {
                 <li>
                   <Link to={`/editprofile`}>Edit Profile</Link>
                 </li>
-                <li data-bs-toggle="modal" data-bs-target="#createPostModal" style={{cursor: 'pointer'}}>Create Post</li>
+                <li data-bs-toggle="modal" data-bs-target="#createPostModal" style={{ cursor: 'pointer' }}>
+                  Create Post
+                </li>
                 <li>
                   <Link to={'/test'}>Test</Link>
                 </li>
@@ -54,7 +56,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-        {/* <Modal /> */}
+        <Modal />
       </section>
     </>
   )

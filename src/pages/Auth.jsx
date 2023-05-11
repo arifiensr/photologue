@@ -30,7 +30,7 @@ export default function Auth() {
   }, [])
   return (
     <>
-      <section className="auth">
+      <section id="auth" className="auth">
         <div className="container">
           <div className="row">
             <div className="col-6">

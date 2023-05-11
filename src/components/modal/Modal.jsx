@@ -3,9 +3,11 @@ import './modal.scss'
 import psApi from '../../api/psApi'
 import { Link } from 'react-router-dom'
 
-export default function Modal({ user }) {
+export default function Modal({ user, post }) {
   const token = JSON.parse(localStorage.getItem('token'))
-  const [images, setImages] = useState(null)
+  const [images, setImages] = useState()
+  const [imagesPreview, setImagesPreview] = useState()
+  const [posting, setPosting] = useState([])
   const createPostImageUrlRef = useRef()
   const createPostCaptionRef = useRef()
 
@@ -30,23 +32,70 @@ export default function Modal({ user }) {
     alert(newPost.message)
   }
 
-  useEffect(() => {}, [])
+  async function updatePost(e) {
+    e.preventDefault()
+
+    const data = {
+      imageUrl: updatePostImageUrlRef.current.value,
+      caption: updatePostCaptionRef.current.value,
+    }
+
+    const editPost = await psApi.updatePost(postId, data, token)
+    console.log(editPost)
+  }
+
+  async function deletePost(e) {
+    e.preventDefault()
+
+    const deletePost = await psApi.deletePost(post.id, token)
+    console.log(deletePost)
+  }
+
+  useEffect(() => {
+    async function getPostById() {
+      // console.log(post);
+      const posting = await psApi.getPostById(post.id, token)
+      posting.data.isLike = post.isLike
+      posting.data.totalLikes = post.totalLikes
+      setPosting(posting.data)
+    }
+    getPostById()
+  }, [post])
+
+  useEffect(() => {
+    if (!images) {
+      setImagesPreview(undefined)
+      return
+    }
+
+    const preview = URL.createObjectURL(images)
+    setImagesPreview(preview)
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [images])
 
   return (
     <>
-      {console.log(user)}
       {/* Post Modal */}
-      {/* <div className="modal fade" id={`postModal${item.id}`} tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id={`postModal${post?.id}`} tabIndex={-1} aria-labelledby="postModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-xl modal-fullscreen-sm-down">
-          <div className="modal-content bg-primary">
+          <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Modal title
               </h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
-            <div className="modal-body">...</div>
+            <div className="modal-body">
+              <img src={posting.imageUrl} alt="" />
+              <p>{posting.caption}</p>
+            </div>
             <div className="modal-footer">
+              <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatePostModal">
+                Edit Post
+              </button>
+              <button type="button" className="btn btn-dark" onClick={deletePost}>
+                Delete Post
+              </button>
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
@@ -62,11 +111,44 @@ export default function Modal({ user }) {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
+
       {/* Create Post Modal */}
       <div className="modal fade" id={`createPostModal`} tabIndex={-1} aria-labelledby="createPostModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
-          <div className="modal-content bg-primary">
+          <div className="modal-content">
+            <form>
+              {/* <div className="mb-3">
+                <label htmlFor="imageUrl" className="form-label">
+                  Image URL
+                </label>
+                <input ref={createPostImageUrlRef} type="text" className="form-control" required />
+              </div> */}
+              <div className="mb-3">
+                <label htmlFor="chooseImage" className="form-label">
+                  Choose Image
+                </label>
+                <input type="file" accept="image/*" onChange={handleImages} className="form-control" required />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="caption" className="form-label">
+                  Caption
+                </label>
+                <input ref={createPostCaptionRef} type="text" className="form-control" required />
+              </div>
+              <div className="mb-3">{images && <><img src={imagesPreview} alt="" /></>}</div>
+              <button type="submit" className="btn btn-dark" onClick={createPost}>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Update Post Modal */}
+      <div className="modal fade" id={`updatePostModal`} tabIndex={-1} aria-labelledby="updatePostModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
+          <div className="modal-content">
             <form>
               <div className="mb-3">
                 <label htmlFor="imageUrl" className="form-label">
@@ -84,15 +166,16 @@ export default function Modal({ user }) {
                 <label htmlFor="caption" className="form-label">
                   Caption
                 </label>
-                <input ref={createPostCaptionRef} type="text" className="form-control" required />
+                <input ref={createPostCaptionRef} defaultValue={post?.caption} type="text" className="form-control" required />
               </div>
-              <button type="submit" className="btn btn-primary" onClick={createPost}>
+              <button type="submit" className="btn btn-dark" onClick={updatePost}>
                 Submit
               </button>
             </form>
           </div>
         </div>
       </div>
+
       {/* Followers Modal */}
       <div className="modal fade" id={`followersModal`} tabIndex={-1} aria-labelledby="followersModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-sm modal-fullscreen-sm-down">
@@ -103,17 +186,23 @@ export default function Modal({ user }) {
             </div>
             <div className="modal-body">
               {user?.followers &&
-                user?.followers.map((follower, i) => {
-                  return (
-                    <div key={i} className="col-12 follow">
-                      <div>
-                        <img src={follower.profilePictureUrl} alt="" />
-                        <span>{follower.username}</span>
+                (user.followers.length !== 0 ? (
+                  user.followers.map((follower, i) => {
+                    return (
+                      <div key={i} className="col-12 follow">
+                        <Link to={`/u/${follower.id}`}>
+                          <div>
+                            <img src={follower.profilePictureUrl} alt="" />
+                            <span>{follower.username}</span>
+                          </div>
+                        </Link>
+                        <button className="btn btn-dark">Follow</button>
                       </div>
-                      <button className="btn btn-dark">Follow</button>
-                    </div>
-                  )
-                })}
+                    )
+                  })
+                ) : (
+                  <>No Follower</>
+                ))}
             </div>
           </div>
         </div>
@@ -129,19 +218,23 @@ export default function Modal({ user }) {
             </div>
             <div className="modal-body">
               {user?.following &&
-                user?.following.map((following, i) => {
-                  return (
-                    <div key={i} className="col-12 follow">
-                      <Link to={`/u/${following.id}`}>
-                        <div>
-                          <img src={following.profilePictureUrl} alt="" />
-                          <span>{following.username}</span>
-                        </div>
-                      </Link>
-                      <button className="btn btn-dark">Follow</button>
-                    </div>
-                  )
-                })}
+                (user?.following.length !== 0 ? (
+                  user.following.map((following, i) => {
+                    return (
+                      <div key={i} className="col-12 follow">
+                        <Link to={`/u/${following.id}`}>
+                          <div>
+                            <img src={following.profilePictureUrl} alt="" />
+                            <span>{following.username}</span>
+                          </div>
+                        </Link>
+                        <button className="btn btn-dark">Follow</button>
+                      </div>
+                    )
+                  })
+                ) : (
+                  <>No Following</>
+                ))}
             </div>
           </div>
         </div>

@@ -2,34 +2,37 @@ import Navbar from '../components/navbar/Navbar'
 import Timeline from '../components/timeline/Timeline'
 import Sidebar from '../components/sidebar/Sidebar'
 import Footer from '../components/footer/Footer'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Outlet, Route, Routes } from 'react-router-dom'
 import Profile from '../components/profile/Profile'
 import EditProfile from '../components/profile/EditProfile'
+import { useContext } from 'react'
+import { GlobalContext } from '../config/GlobalState'
+import Auth from './Auth'
 
 export default function Home() {
+  const { isLogin } = useContext(GlobalContext)
+
   return (
     <>
       <section id="homepage" className="homepage">
-        <div className="container mt-5">
-          <div className="row">
-            <div className="col-3">
-              <Navbar />
-              <Link to={'/test'}>Test</Link>
+        {!isLogin ? (
+          <Auth />
+        ) : (
+          <>
+            <div className="container mt-5">
+              <div className="row">
+                <div className="col-3">
+                  <Navbar />
+                  <Sidebar />
+                  <Link to={'/test'}>Test</Link>
+                </div>
+                <div className="col-9">
+                  <Outlet />
+                </div>
+              </div>
             </div>
-            <div className="col-6">
-              <Routes>
-                <Route index element={<Timeline />} />
-                <Route path="/test" element={<Sidebar />} />
-                <Route path="/u/:id" element={<Profile />} />
-                <Route path="/editprofile" element={<EditProfile />} />
-              </Routes>
-              {/* <Timeline /> */}
-            </div>
-            <div className="col-3">
-              <Sidebar />
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </section>
     </>
   )

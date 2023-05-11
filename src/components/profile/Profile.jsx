@@ -68,7 +68,7 @@ export default function Profile() {
       setUserById(userById.data)
     }
     getUserById(id)
-  }, [])
+  }, [id])
 
   return (
     <section id="profile" className="profile">
@@ -130,8 +130,9 @@ export default function Profile() {
                   {userById.posts &&
                     userById.posts.map((post, i) => {
                       return (
-                        <div key={i} className="col-4 profile__posts-post">
+                        <div key={i} className="col-4 profile__posts-post" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
                           <img src={post.imageUrl} alt="" />
+                          <Modal post={post}/>
                         </div>
                       )
                     })}
