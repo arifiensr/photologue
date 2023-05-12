@@ -28,7 +28,7 @@ export default function Home() {
                 <div className="col-12 col-sm-11 col-xl-9 p-0">
                   <Outlet />
                 </div>
-                <div className='col-12 d-flex d-d-sm-none'>
+                <div className='col-12 d-flex d-sm-none'>
                   <NavbarMobile />
                 </div>
               </div>
