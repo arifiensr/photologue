@@ -62,7 +62,7 @@ export default function Login() {
               <input type="checkbox" />
               Remember me
             </label>
-            <a href="#">Forgot Passoword?</a>
+            <a href="#">Forgot Password?</a>
           </div>
           <button type="submit" className="btn btn-primary w-100 p-2 mt-3" onClick={loginUser}>
             Submit
