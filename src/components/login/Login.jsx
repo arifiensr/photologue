@@ -41,34 +41,42 @@ export default function Login() {
     }
   }
   return (
-    <>
-      <section id="login" className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <h3>Login</h3>
-              <form className="login__form">
-                <div className="mb-3">
-                  <label htmlFor="inputEmailLogin" className="form-label email-label">
-                    Email address
-                  </label>
-                  <input ref={loginEmailRef} type="email" className="form-control" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="inputPasswordLogin" className="form-label">
-                    Password
-                  </label>
-                  <input ref={loginPasswordRef} type="password" className="form-control" />
-                </div>
-                <button type="submit" className="btn btn-primary" onClick={loginUser}>
-                  Submit
-                </button>
-                <button className="btn btn-secondary ms-2 signup-button">Sign Up</button>
-              </form>
-            </div>
-          </div>
+    <section id="login" className="login">
+      <div className="login__wrap">
+        <div className="login__wrap-title d-flex justify-content-center">
+          <h2>LOGIN</h2>
         </div>
-      </section>
-    </>
+        <form className="login__wrap-form">
+          <div className="form-floating mb-2">
+            <input ref={loginEmailRef} type="text" className="form-control" placeholder="email" id="loginEmail" required />
+            <label htmlFor="loginEmail">Email</label>
+            <i className="bx bxs-envelope"></i>
+          </div>
+          <div className="form-floating mb-2">
+            <input ref={loginPasswordRef} type="text" className="form-control" placeholder="email" id="loginPassword" required />
+            <label htmlFor="loginPassword">Password</label>
+            <i className="bx bxs-lock-alt"></i>
+          </div>
+          <div className="remember-forgot mb-2">
+            <label>
+              <input type="checkbox" />
+              Remember me
+            </label>
+            <a href="#">Forgot Passoword?</a>
+          </div>
+          <button type="submit" className="btn btn-primary w-100 p-2 mt-3" onClick={loginUser}>
+            Submit
+          </button>
+          <div className="register d-flex justify-content-center mt-3">
+            <p>
+              Don't have an account?{' '}
+              <a href="#" className="register-link">
+                Register
+              </a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
   )
 }

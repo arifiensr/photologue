@@ -1,7 +1,7 @@
-// @import '../assets/images/landingpage/mockup.png';
+@use '../scss/variables' as *;
 
 .auth {
-  margin: 6rem;
+  background-color: $secondary;
 
   .auth__mockup {
     height: 45rem;
@@ -14,8 +14,8 @@
 
   .auth__form {
     position: relative;
-    height: 45rem;
-    border: 1px solid black;
+    height: 70vh;
+    border: 1px solid $primary;
     overflow: hidden;
 
     .auth__form-login {

@@ -8,7 +8,7 @@ import Footer from '../components/footer/Footer'
 export default function Auth() {
   useEffect(() => {
     const loginButton = document.querySelector('.login-button')
-    const signupButton = document.querySelector('.signup-button')
+    const signupButton = document.querySelector('.register-link')
     const formLogin = document.getElementById('auth__form-login')
     const formSignup = document.getElementById('auth__form-signup')
 
@@ -29,29 +29,20 @@ export default function Auth() {
     })
   }, [])
   return (
-    <>
-      <section id="auth" className="auth">
+      <section id="auth" className="auth min-vh-100 d-flex justify-content-center align-items-center">
         <div className="container">
-          <div className="row">
-            <div className="col-6">
-              <div className="container">
-                <div className="row">
-                  <div className="col-12 auth__mockup"></div>
-                </div>
-              </div>
-            </div>
-            <div className="col-6 auth__form rounded shadow">
-              <div className="auth__form-login m-3" id="auth__form-login">
+          <div className="row justify-content-center align-items-center">
+            <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 auth__form rounded shadow">
+              <div className="auth__form-login" id="auth__form-login">
                 <Login />
               </div>
-              <div className="auth__form-signup m-3" id="auth__form-signup">
+              <div className="auth__form-signup" id="auth__form-signup">
                 <SignUp />
               </div>
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </section>
-    </>
   )
 }

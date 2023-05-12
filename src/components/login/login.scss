@@ -1,0 +1,55 @@
+@use '../../scss/variables' as *;
+
+.login {
+  &__wrap {
+    padding: 1rem;
+
+    &-title {
+      color: $primary;
+    }
+
+    &-form {
+      .form-floating {
+        position: relative;
+
+        input {
+          background-color: transparent;
+          border: 0;
+          border-radius: 0;
+          border-bottom: 2px solid $primary;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        label:active {
+          background-color: $secondary;
+        }
+
+        i {
+          z-index: 999;
+          font-size: 1.5rem;
+          color: $primary;
+          position: absolute;
+          top: 30%;
+          right: 3%;
+        }
+      }
+
+      .remember-forgot {
+        display: flex;
+        justify-content: space-between;
+
+        
+      }
+      .register {
+        a {
+          text-decoration: none;
+          font-weight: 600;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
