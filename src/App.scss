@@ -9,4 +9,14 @@
 @import '../node_modules/boxicons/css/boxicons.min.css';
 @import '../node_modules/glightbox/dist/css/glightbox.min.css';
 
+body {
+  background-color: $secondary;
+}
 
+.homepage {
+  background-color: $secondary;
+}
+
+body > #root > div {
+  height: 100vh;
+}

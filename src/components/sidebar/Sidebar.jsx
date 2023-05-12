@@ -1,14 +1,10 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import './sidebar.scss'
-import GLightbox from 'glightbox'
+import { GlobalContext } from '../../config/GlobalState'
+import { Link } from 'react-router-dom'
 
 export default function Sidebar() {
-  const lightbox = GLightbox({
-    moreLength: 0,
-    // touchNavigation: true,
-    // loop: true,
-    // autoplayVideos: true,
-  })
+  const { loggedUser, setIsLogin } = useContext(GlobalContext)
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -27,37 +23,74 @@ export default function Sidebar() {
   }, [])
 
   return (
-    <>
-      <section id="sidebar" className="sidebar hidden">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 border border-black rounded shadow">
-              <h1>Suggestion</h1>
-              <ul>
-                <li>1</li>
-                <li>2</li>
-              </ul>
-              {/* <a href="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8&w=1000&q=80" data-title="My title" data-description=".custom-desc1" data-desc-position="left" data-type="image" data-effect="fade" data-width="900px" data-height="auto" data-zoomable="true" data-draggable="true" className="glightbox">
-                <img src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80" alt="image" />
-              </a> */}
-
-              <div className="glightbox-desc custom-desc1">
-                <p>The content of this div will be used as the slide description</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
-                <p>You can add links and any HTML you want</p>
+    <section id="sidebar" className="sidebar position-fixed m-0">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="sidebar__wrap d-flex flex-column justify-content-between col-auto min-vh-100">
+            <div className="sidebar__wrap_content mt-4">
+              <div className="sidebar__wrap_content-title d-flex justify-content-center align-items-center">
+                <a className="text-primary d-none d-sm-inline text-decoration-none d-flex justify-content-center align-items-center" role="button">
+                  <span className="fs-4 fw-bold">Suggestion</span>
+                </a>
               </div>
+              <hr className="text-primary d-none d-sm-block" />
+              <ul className="sidebar__wrap_content-list nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
+                <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
+                    <img src={loggedUser.profilePictureUrl} alt="" />
+                    <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
+                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                  </Link>
+                </li>
+                <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
+                    <img src={loggedUser.profilePictureUrl} alt="" />
+                    <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
+                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                  </Link>
+                </li>
+                <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
+                    <img src={loggedUser.profilePictureUrl} alt="" />
+                    <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
+                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                  </Link>
+                </li>
+                <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
+                    <img src={loggedUser.profilePictureUrl} alt="" />
+                    <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
+                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                  </Link>
+                </li>
+                <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
+                    <img src={loggedUser.profilePictureUrl} alt="" />
+                    <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
+                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                  </Link>
+                </li>
+                <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
+                    <img src={loggedUser.profilePictureUrl} alt="" />
+                    <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
+                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                  </Link>
+                </li>
+                <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
+                    <div>
+                      <img src={loggedUser.profilePictureUrl} alt="" />
+                      <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
+                    </div>
+                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

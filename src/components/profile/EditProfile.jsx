@@ -45,7 +45,7 @@ export default function EditProfile() {
   }
 
   return (
-    <section id="editprofile" className="editprofile">
+    <section id="editprofile" className="editprofile min-vh-100">
       <div className="container">
         <div className="row">
           <div className="col-12 border border-1 border-black rounded shadow py-3">

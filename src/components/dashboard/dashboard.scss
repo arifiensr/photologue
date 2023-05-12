@@ -1,0 +1,30 @@
+@use '../../scss/variables' as *;
+
+.dashboard {
+  &__main {
+    border-right: 1px solid rgba($primary, 0.2);
+    border-left: 1px solid rgba($primary, 0.2);
+
+    &-nav {
+      .nav-tabs {
+        .nav-link {
+          background-color: rgba($secondary, 0.5) !important;
+          backdrop-filter: blur(6px);
+          color: rgba($primary, 0.7);
+          border-radius: 0px !important;
+          border-bottom: 1px solid rgba($primary, 0.2);
+        }
+        .active {
+          position: relative;
+          background-color: rgba($secondary, 0.5) !important;
+          backdrop-filter: blur(6px);
+          color: $primary !important;
+          border-color: rgba($primary, 0.2) !important;
+          border-bottom-color: $primary !important;
+          border-bottom-width: 3px !important;
+          border-radius: 0px !important;
+        }
+      }
+    }
+  }
+}

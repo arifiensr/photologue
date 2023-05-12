@@ -1,3 +1,58 @@
+@use '../../scss/variables' as *;
+
+.navbar {
+  
+  border-right: 1px solid rgba($primary, 0.2);
+  &__wrap {
+    &_content {
+      &-title {
+        transition: all 0.5s;
+
+        &:hover {
+          a {
+            span {
+              scale: 1.05;
+            }
+          }
+        }
+      }
+
+      &-list {
+        transition: all 0.5s;
+        li {
+          transition: all 0.5s;
+          border-radius: 0.7rem;
+
+          img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid $primary;
+          }
+
+          i {
+            font-size: 30px;
+          }
+
+          &:hover {
+            scale: 1.05;
+            i,
+            img,
+            span {
+              color: $primary;
+            }
+          }
+
+          &:nth-last-child(1) {
+            justify-self: end;
+          }
+        }
+      }
+    }
+  }
+}
+
 .hidden {
   opacity: 0;
   filter: blur(5px);

@@ -1,11 +1,16 @@
+@use '../../scss/variables' as *;
+
 .profile {
   &__header {
     padding: 1rem 0rem;
 
     &-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       img {
-        width: 100%;
-        height: 100%;
+        width: 10rem;
+        height: 10rem;
         border-radius: 50%;
         object-fit: cover;
       }

@@ -6,10 +6,9 @@ import ApiTest from './pages/ApiTest'
 import { useContext } from 'react'
 import { GlobalContext } from './config/GlobalState'
 import Auth from './pages/Auth'
-import Sidebar from './components/sidebar/Sidebar'
 import Profile from './components/profile/Profile'
 import EditProfile from './components/profile/EditProfile'
-import Timeline from './components/timeline/Timeline'
+import Dashboard from './components/dashboard/Dashboard'
 
 export default function App() {
   const { isLogin } = useContext(GlobalContext)
@@ -19,8 +18,7 @@ export default function App() {
         <Route path="/" element={<Auth />} />
       ) : (
         <Route path="/" element={<Home />}>
-          <Route path="/" element={<Timeline />} />
-          <Route path="/test" element={<Sidebar />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/u/:id" element={<Profile />} />
           <Route path="/editprofile" element={<EditProfile />} />
         </Route>

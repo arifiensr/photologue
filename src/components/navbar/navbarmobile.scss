@@ -1,0 +1,22 @@
+@use '../../scss/variables' as *;
+
+.navbar-mobile {
+  &__content {
+    background-color: $secondary;
+    border-top: 1px solid rgba($primary, 0.2);
+
+    i {
+      color: $primary;
+      font-size: 2rem;
+      padding: 0.5rem;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid $primary;
+    }
+  }
+}

@@ -43,36 +43,70 @@ export default function Navbar() {
 
   return (
     <>
-      <section id="" className="hidden">
-        <div className="container">
+      <section id="navbar" className="navbar p-0 position-fixed">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-12 border border-black rounded shadow w-100">
-              <ul className="list-unstyled">
-                <li>
-                  <Link to={'/'}>Home</Link>
-                </li>
-                <li>
-                  <Link to={`/u/${loggedUser.id}`}>Profile</Link>
-                </li>
-                <li>
-                  <Link to={`/editprofile`}>Edit Profile</Link>
-                </li>
-                <li data-bs-toggle="modal" data-bs-target="#createPostModal" style={{ cursor: 'pointer' }}>
-                  Create Post
-                </li>
-                <li>
-                  <Link to={'/test'}>Test</Link>
-                </li>
-                <li>
-                  <button className="btn btn-danger" onClick={logoutUser}>
-                    Logout
-                  </button>
-                </li>
-              </ul>
+            <div className="navbar__wrap d-flex flex-column justify-content-between col-auto min-vh-100">
+              <div className="navbar__wrap_content mt-4">
+                <div className="navbar__wrap_content-title d-flex justify-content-center align-items-center">
+                  <a className="text-primary d-none d-xl-inline text-decoration-none d-flex justify-content-center align-items-center" role="button">
+                    <span className="fs-4 fw-bold">Photologue</span>
+                  </a>
+                </div>
+                <hr className="text-primary d-none d-xl-block" />
+                <ul className="navbar__wrap_content-list nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
+                  <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                    <Link to={'/'} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                      <i className="bx bx-home"></i>
+                      <span className="ms-2 d-none d-xl-inline">Home</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                    <a href="#" type="button" className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                      <i className="bx bx-notification"></i>
+                      <span className="ms-2 d-none d-xl-inline">Notification</span>
+                    </a>
+                  </li>
+                  <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                    <Link to={`/u/${loggedUser.id}`} href="#" className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                      {/* <i className="bx bx-user"></i> */}
+                      <img src={loggedUser.profilePictureUrl} alt="" />
+                      <span className="ms-2 d-none d-xl-inline">Profile</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                    <Link to={`/editprofile`} href="#" className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                      <i className="bx bx-cog"></i>
+                      <span className="ms-2 d-none d-xl-inline">Edit Profile</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                    <button className="btn btn-primary fs-6 w-100 rounded shadow d-none d-xl-block" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                      Create Post
+                    </button>
+                  </li>
+                  <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
+                    <button className="btn btn-primary fs-6 w-100 rounded shadow d-none d-xl-block" onClick={logoutUser}>
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <Modal />
+      </section>
+
+      <section id="navbar-mobile" className="navbar-mobile">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-auto">
+              <i className="bx bx-home"></i>
+              <i className="bx bx-home"></i>
+              <i className="bx bx-home"></i>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   )

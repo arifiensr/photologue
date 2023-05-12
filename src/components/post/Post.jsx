@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import Modal from '../modal/Modal'
 import './post.scss'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import psApi from '../../api/psApi'
 
 export default function Post({ post }) {
   const [isLike, setIsLike] = useState(post.isLike)
+  const [comment, setComment] = useState('')
   const token = JSON.parse(localStorage.getItem('token'))
 
   async function likePost(e, id) {
@@ -32,6 +33,20 @@ export default function Post({ post }) {
     setIsLike(false)
   }
 
+  async function createComment(e) {
+    e.preventDefault()
+
+    const data = {
+      postId: post.id,
+      comment: comment,
+    }
+
+    const createComment = await psApi.createComment(data, token)
+
+    setComment('')
+    console.log(createComment)
+  }
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -49,43 +64,46 @@ export default function Post({ post }) {
   }, [])
 
   return (
-    <>
-      <div className="col-12 h-100 border-bottom pt-2 timeline__post">
-        <Link to={`/u/${post.user?.id}`}>
-          <div className="timeline__post-header d-inline">
+    <section id="post" className="post">
+      <div className="h-100 border-bottom py-3 post__content">
+        <Link to={`/u/${post.user?.id}`} className="text-decoration-none">
+          <div className="post__content-header d-inline">
             <img src={post.user?.profilePictureUrl} alt="" />
-            <span className="fw-bold text-decoration-none">{post.user?.username}</span>
+            <span className="fw-bold ps-2">{post.user?.username}</span>
           </div>
         </Link>
-        <img src={post.imageUrl} alt="" className="w-100 h-100 object-fit-contain mt-3" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`} />
-        {isLike ? <i className="bx bxs-heart" onClick={(e) => unlikePost(e, post.id)} style={{ cursor: 'pointer' }}></i> : <i className="bx bx-heart" onClick={(e) => likePost(e, post.id)} style={{ cursor: 'pointer' }}></i>}
-        <p className="fw-bold">
-          {post.totalLikes === 0 ? (
-            <>
-              <span className="fw-normal">Be first to </span>like this
-            </>
-          ) : (
-            <>
-              {post.totalLikes} {post.totalLikes === 1 ? 'like' : 'likes'}
-            </>
-          )}{' '}
-        </p>
-        <p>
-          <span className="fw-bold">{post.user?.username}</span> {post.caption}
-        </p>
-        {post.comments &&
-          post.comments.map((comment, i) => {
-            return (
+        <div className="post__content-image">
+          <img src={post.imageUrl} alt="" className="pt-3" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`} />
+        </div>
+        <div className="post__content-icons">
+          {isLike ? <i className="bx bxs-heart" onClick={(e) => unlikePost(e, post.id)} style={{ cursor: 'pointer' }}></i> : <i className="bx bx-heart" onClick={(e) => likePost(e, post.id)} style={{ cursor: 'pointer' }}></i>}
+          <i className="bx bx-message-rounded"></i>
+          <i className="bx bx-share-alt"></i>
+        </div>
+        <div className="post__content-likes">
+          <p className="fw-bold m-0 pb-2">
+            {post.totalLikes === 0 ? (
               <>
-                <p>
-                  <span className="fw-bold">{comment.user.username}</span> {comment.comment}
-                </p>
+                <span className="fw-normal">Be first to </span>like this
               </>
-            )
-          })}
-        <p>ID Post: {post.id}</p>
+            ) : (
+              <>
+                {post.totalLikes} {post.totalLikes === 1 ? 'like' : 'likes'}
+              </>
+            )}{' '}
+          </p>
+        </div>
+        <div className="post__content-caption">
+          <span className="fw-bold">{post.user?.username}</span> {post.caption}
+        </div>
+        <div className="post__content-comment">
+          <form>
+            <input type="text" placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)}/>
+            {comment && <button onClick={createComment}>Post</button>}
+          </form>
+        </div>
       </div>
       <Modal post={post} />
-    </>
+    </section>
   )
 }
