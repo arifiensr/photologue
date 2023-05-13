@@ -1,43 +1,48 @@
-import { useRef, useState } from 'react'
-import './createpost.scss'
+import { useEffect, useRef, useState } from 'react'
 import psApi from '../../api/psApi'
+import { Link } from 'react-router-dom'
+import './updatepost.scss'
 
-export default function CreatePost() {
+export default function UpdatePost({ post }) {
   const token = JSON.parse(localStorage.getItem('token'))
   const [images, setImages] = useState()
-  const [imagesPreview, setImagesPreview] = useState()
-  const createPostCaptionRef = useRef()
+  const [imagesPreview, setImagesPreview] = useState(post.imageUrl)
+  const updatePostCaptionRef = useRef(post.caption)
 
   function handleImages(e) {
     setImages(e.target.files[0])
     setImagesPreview(URL.createObjectURL(e.target.files[0]))
   }
 
-  async function createPost(e) {
+  async function updatePost(e) {
     e.preventDefault()
 
-    const formData = new FormData()
-    formData.append('image', images)
+    const imageUrl = { url: post.imageUrl }
 
-    const imageUrl = await psApi.uploadImage(formData, token)
+    if (images) {
+      const formData = new FormData()
+      formData.append('image', images)
+
+      imageUrl = await psApi.uploadImage(formData, token)
+    }
 
     const data = {
       imageUrl: imageUrl.url,
-      caption: createPostCaptionRef.current.value,
+      caption: updatePostCaptionRef.current.value,
     }
 
-    const newPost = await psApi.createPost(data, token)
-    alert(newPost.message)
+    const updatePost = await psApi.updatePost(post.id, data, token)
+    alert(updatePost.message)
   }
 
   return (
     <>
-      <div className="modal fade createPost" id={`createPostModal`} tabIndex={-1} aria-labelledby="createPostModalLabel" aria-hidden="true">
+      <div className="modal fade updatePost" id={`updatePostModal${post.id}`} tabIndex={-1} aria-labelledby="updatePostModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
           <div className="modal-content border-primary">
             <div className="modal-header">
-              <h1 className="modal-title fs-5 text-primary" id="createPostModalLabel">
-                Create Post
+              <h1 className="modal-title fs-5 text-primary" id="updatePostModalLabel">
+                Update Post
               </h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -53,20 +58,16 @@ export default function CreatePost() {
                   <span className="input-box__icon">
                     <i className="bx bxs-edit"></i>
                   </span>
-                  <input ref={createPostCaptionRef} type="text" autoComplete="new-password" required />
+                  <input ref={updatePostCaptionRef} defaultValue={post.caption} type="text" autoComplete="new-password" required />
                   <label>Caption</label>
                 </div>
               </form>
               <div className="mb-3 image-preview">
-                {images && (
-                  <>
-                    <img src={imagesPreview} alt="" />
-                  </>
-                )}
+                <img src={imagesPreview} alt="" />
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={createPost}>
+              <button type="button" className="btn btn-primary" onClick={updatePost}>
                 Submit
               </button>
             </div>

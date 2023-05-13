@@ -27,10 +27,19 @@
       
           &-icons {
             display: flex;
-            justify-content: start;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.7rem;
-            padding-left: 0.5rem;
+            padding: 0 0.5rem;
+
+            &-left {
+              display: flex;
+              gap: 0.7rem;
+            }
+
+            &-right {
+              display: flex;
+              gap: 0.7rem;
+            }
       
             i {
               padding: 0.5rem 0rem;
