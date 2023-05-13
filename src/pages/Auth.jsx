@@ -7,7 +7,7 @@ import Footer from '../components/footer/Footer'
 
 export default function Auth() {
   useEffect(() => {
-    const loginButton = document.querySelector('.login-button')
+    const loginButton = document.querySelector('.login-link')
     const signupButton = document.querySelector('.register-link')
     const formLogin = document.getElementById('auth__form-login')
     const formSignup = document.getElementById('auth__form-signup')
@@ -36,7 +36,7 @@ export default function Auth() {
               <div className="auth__form-login" id="auth__form-login">
                 <Login />
               </div>
-              <div className="auth__form-signup" id="auth__form-signup">
+              <div className="auth__form-signup overflow-auto" id="auth__form-signup">
                 <SignUp />
               </div>
             </div>

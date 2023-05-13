@@ -11,13 +11,13 @@
       font-size: 2rem;
       padding: 0.5rem;
     }
-
     img {
       width: 30px;
       height: 30px;
       object-fit: cover;
       border-radius: 50%;
-      border: 3px solid $primary;
+      margin-left: 9px;
+      margin-right: 9px;
     }
   }
 }

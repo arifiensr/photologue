@@ -26,32 +26,32 @@ export default function NavbarMobile() {
   }
 
   // useEffect(() => {
-    // const observer = new IntersectionObserver((entries) => {
-    //   entries.forEach((entry) => {
-    //     console.log(entry)
-    //     if (entry.isIntersecting) {
-    //       entry.target.classList.add('show')
-    //     } else {
-    //       entry.target.classList.remove('show')
-    //     }
-    //   })
-    // })
+  // const observer = new IntersectionObserver((entries) => {
+  //   entries.forEach((entry) => {
+  //     console.log(entry)
+  //     if (entry.isIntersecting) {
+  //       entry.target.classList.add('show')
+  //     } else {
+  //       entry.target.classList.remove('show')
+  //     }
+  //   })
+  // })
 
-    // const hiddenElements = document.querySelectorAll('.hidden')
-    // hiddenElements.forEach((el) => observer.observe(el))
+  // const hiddenElements = document.querySelectorAll('.hidden')
+  // hiddenElements.forEach((el) => observer.observe(el))
   // }, [])
 
   return (
-      <section id="navbar-mobile" className="navbar-mobile fixed-bottom">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-auto navbar-mobile__content w-100 d-flex justify-content-around align-items-center">
-              <i className="bx bx-home"></i>
-              <i className="bx bx-plus-circle"></i>
-              <img src={loggedUser.profilePictureUrl} alt="" />
-            </div>
+    <section id="navbar-mobile" className="navbar-mobile fixed-bottom">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-auto navbar-mobile__content w-100 d-flex justify-content-around align-items-center">
+            <i className="bx bx-home"></i>
+            <i className="bx bx-plus-circle"></i>
+            <img src={loggedUser.profilePictureUrl} alt="" />
           </div>
         </div>
-      </section>
+      </div>
+    </section>
   )
 }

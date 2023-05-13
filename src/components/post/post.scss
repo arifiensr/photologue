@@ -1,14 +1,15 @@
 @use '../../scss/variables' as *;
 
 .postModal {
-.modal-content {
-  .modal-body {
-    button {
-      position: absolute;
-      right: 1rem;
+  .modal-content {
+    background-color: $secondary;
+    .modal-body {
+      button {
+        position: absolute;
+        right: 1rem;
+      }
     }
   }
-}
 }
 
 .post {
@@ -19,7 +20,6 @@
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        border: 3px solid $primary;
         object-fit: cover;
       }
     }

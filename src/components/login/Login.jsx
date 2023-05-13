@@ -47,8 +47,8 @@ export default function Login() {
         <div className="login__wrap-title d-flex justify-content-center">
           <img src={logoPhotologue} alt="" />
         </div>
-        <form className="login__wrap-form">
-          <div className="form-floating mb-4">
+        <form className="login__wrap-form" autoComplete="off">
+          {/* <div className="form-floating mb-4">
             <input ref={loginEmailRef} type="email" className="form-control" placeholder="email" id="loginEmail" required />
             <label htmlFor="loginEmail">Email</label>
             <i className="bx bxs-envelope"></i>
@@ -57,13 +57,27 @@ export default function Login() {
             <input ref={loginPasswordRef} type="password" className="form-control" placeholder="email" id="loginPassword" required />
             <label htmlFor="loginPassword">Password</label>
             <i className="bx bxs-lock-alt"></i>
+          </div> */}
+          <div className="input-box">
+            <span className="input-box__icon">
+              <i className="bx bxs-envelope"></i>
+            </span>
+            <input ref={loginEmailRef} type="email" autoComplete="new-password" required />
+            <label htmlFor="inputEmailLabel">Email</label>
+          </div>
+          <div className="input-box">
+            <span className="input-box__icon">
+              <i className="bx bxs-lock-alt"></i>
+            </span>
+            <input ref={loginPasswordRef} type="password" autoComplete="new-password" required />
+            <label htmlFor="inputPasswordLabel">Password</label>
           </div>
           <div className="remember-forgot mb-4">
             <label>
               <input type="checkbox" />
               Remember me
             </label>
-            <a href="#" className='text-decoration-none fw-bold'>Forgot Password?</a>
+            <a href="#">Forgot Password?</a>
           </div>
           <button type="submit" className="btn btn-primary w-100 p-2 mt-3" onClick={loginUser}>
             Login
@@ -71,7 +85,7 @@ export default function Login() {
           <div className="register d-flex justify-content-center mt-4">
             <p>
               Don't have an account?{' '}
-              <a href="#" className="text-decoration-none fw-bold register-link">
+              <a href="#" className="register-link">
                 Register
               </a>
             </p>

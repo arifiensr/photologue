@@ -29,8 +29,6 @@ export default function Signup() {
 
     const register = await psApi.registerUser(data)
     alert(register.message)
-
-    console.log(register)
   }
 
   return (
@@ -38,51 +36,82 @@ export default function Signup() {
       <section id="signup" className="signup">
         <div className="signup__wrap">
           <div className="signup__wrap-title d-flex justify-content-center">
-            <p className='text-primary fw-bold fs-2'>Sign Up</p>
+            <p className="text-primary fw-bold fs-2">Sign Up</p>
           </div>
           <form className="signup__wrap-form">
-            <div className="form-floating mb-2">
-              <input ref={registerNameRef} type="text" className="form-control" placeholder="Name" id="floatingName" required />
-              <label htmlFor="floatingName">Name</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-id-card"></i>
+              </span>
+              <input ref={registerNameRef} type="text" autoComplete="new-password" required />
+              <label>Name</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerUsernameRef} type="text" className="form-control" placeholder="Username" id="floatingUsername" required />
-              <label htmlFor="floatingUsername">Username</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-user"></i>
+              </span>
+              <input ref={registerUsernameRef} type="text" autoComplete="new-password" required />
+              <label>Username</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerEmailRef} type="email" className="form-control" placeholder="Email" id="floatingEmail" required />
-              <label htmlFor="floatingEmail">Email</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-envelope"></i>
+              </span>
+              <input ref={registerEmailRef} type="email" autoComplete="new-password" required />
+              <label>Email</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerPasswordRef} type="password" className="form-control" placeholder="Password" id="floatingPassword" required />
-              <label htmlFor="floatingPassword">Password</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-lock-alt"></i>
+              </span>
+              <input ref={registerPasswordRef} type="password" autoComplete="new-password" required />
+              <label>Password</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerPasswordRepeatRef} type="password" className="form-control" placeholder="PasswordRepeat" id="floatingPasswordRepeat" required />
-              <label htmlFor="floatingPasswordRepeat">Password Repeat</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-lock-alt"></i>
+              </span>
+              <input ref={registerPasswordRepeatRef} type="password" autoComplete="new-password" required />
+              <label>Repeat Password</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerProfilePictureUrlRef} type="text" className="form-control" placeholder="ProfilePictureUrl" id="floatingProfilePictureUrl" required />
-              <label htmlFor="floatingProfilePictureUrl">Profile Picture URL</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-user-circle"></i>
+              </span>
+              <input ref={registerProfilePictureUrlRef} type="text" autoComplete="new-password" required />
+              <label>Profile Picture URL</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerPhoneNumberRef} type="number" className="form-control" placeholder="PhoneNumber" id="floatingPhoneNumber" required />
-              <label htmlFor="floatingPhoneNumber">Phone Number</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-phone"></i>
+              </span>
+              <input ref={registerPhoneNumberRef} type="number" autoComplete="new-password" required />
+              <label>Phone Number</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerBioRef} type="text" className="form-control" placeholder="Bio" id="floatingBio" required />
-              <label htmlFor="floatingBio">Bio</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-notepad"></i>
+              </span>
+              <input ref={registerBioRef} type="text" autoComplete="new-password" required />
+              <label>Bio</label>
             </div>
-            <div className="form-floating mb-2">
-              <input ref={registerWebsiteRef} type="text" className="form-control" placeholder="Website" id="floatingWebsite" required />
-              <label htmlFor="floatingWebsite">Website</label>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bx-globe"></i>
+              </span>
+              <input ref={registerWebsiteRef} type="text" autoComplete="new-password" required />
+              <label>Website</label>
             </div>
-
-            <div className="d-flex justify-content-end mt-3">
-              <button type="submit" className="btn btn-primary" onClick={handleRegister}>
-                Sign Up
-              </button>
-              <button className="btn btn-secondary ms-2 login-button">Login</button>
+            <button type="submit" className="btn btn-primary w-100 p-2 mt-3" onClick={handleRegister}>
+              Sign Up
+            </button>
+            <div className="register d-flex justify-content-center mt-4">
+              <p>
+                Already have an account?{' '}
+                <a href="#" className="text-decoration-none fw-bold login-link">
+                  Login
+                </a>
+              </p>
             </div>
           </form>
         </div>

@@ -109,9 +109,10 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-                  <button className="btn btn-primary fs-6 w-100 rounded shadow d-none d-xl-block" data-bs-toggle="modal" data-bs-target="#createPostModal">
-                    Create Post
-                  </button>
+                  <div className="nav-link text-primary d-flex align-items-center" aria-current="page" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                    <i className="bx bx-plus-circle"></i>
+                    <span className="ms-2 d-none d-xl-inline">Create Post</span>
+                  </div>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <button className="btn btn-primary fs-6 w-100 rounded shadow d-none d-xl-block" onClick={logoutUser}>

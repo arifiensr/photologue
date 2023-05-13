@@ -14,6 +14,27 @@ import CreatePost from '../components/post/CreatePost'
 export default function Home() {
   const { isLogin } = useContext(GlobalContext)
 
+  function topFunction() {
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
+  }
+
+  useEffect(() => {
+    let mybutton = document.getElementById('back-to-top-button')
+
+    window.onscroll = function () {
+      scrollFunction()
+    }
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = 'block'
+      } else {
+        mybutton.style.display = 'none'
+      }
+    }
+  }, [])
+
   return (
     <>
       <section id="homepage" className="homepage min-vh-100">
@@ -34,6 +55,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <button onClick={topFunction} id="back-to-top-button" title="Go to top">
+              <i className='bx bx-chevron-up'></i>
+            </button>
             <CreatePost />
           </>
         )}

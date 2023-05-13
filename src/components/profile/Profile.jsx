@@ -86,18 +86,18 @@ export default function Profile() {
                 {userById.id !== loggedUser.id ? (
                   !isFollow ? (
                     <>
-                      <button className="btn btn-dark ms-4" onClick={followUser}>
+                      <button className="btn btn-primary ms-4" onClick={followUser}>
                         Follow
                       </button>
                     </>
                   ) : (
                     <>
-                      <button className="btn btn-dark ms-4" onClick={unfollowUser}>
+                      <button className="btn btn-primary ms-4" onClick={unfollowUser}>
                         Unfollow
                       </button>
                     </>
                   )
-                ) : null}{' '}
+                ) : null}
               </div>
               <div className="profile__header-caption-2 d-flex gap-5 mt-3">
                 <span>
@@ -134,14 +134,14 @@ export default function Profile() {
                 return (
                   <div key={i} className="col-4 profile__posts-post p-1" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
                     <img src={post.imageUrl} alt="" />
-                    <Post post={post}/>
+                    <Post post={post} />
                   </div>
                 )
               })}
           </div>
         </div>
       </div>
-      {/* <Modal user={userById} /> */}
+      <Modal user={userById} />
     </section>
   )
 }
