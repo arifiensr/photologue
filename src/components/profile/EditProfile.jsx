@@ -46,60 +46,65 @@ export default function EditProfile() {
 
   return (
     <section id="editprofile" className="editprofile min-vh-100">
-      <div className="container">
-        <div className="row">
-          <div className="col-12 border border-1 border-black rounded shadow py-3">
-            <h3>Edit Profile</h3>
-            <form>
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Name
-                </label>
-                <input ref={loggedNameRef} defaultValue={loggedNameRef.current} type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="username" className="form-label">
-                  Username
-                </label>
-                <input ref={loggedUsernameRef} defaultValue={loggedUsernameRef.current} type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input ref={loggedEmailRef} defaultValue={loggedEmailRef.current} type="email" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="profilePictureUrl" className="form-label">
-                  Profile Picture URL
-                </label>
-                <input ref={loggedProfilePictureUrlRef} defaultValue={loggedProfilePictureUrlRef.current} type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="phoneNumber" className="form-label">
-                  Phone Number
-                </label>
-                <input ref={loggedPhoneNumberRef} defaultValue={loggedPhoneNumberRef.current} type="number" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="bio" className="form-label">
-                  Bio
-                </label>
-                <input ref={loggedBioRef} defaultValue={loggedBioRef.current} type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="website" className="form-label">
-                  Website
-                </label>
-                <input ref={loggedWebsiteRef} defaultValue={loggedWebsiteRef.current} type="text" className="form-control" />
-              </div>
-              <button type="submit" className="btn btn-primary" onClick={editProfile}>
-                Submit
-              </button>
-            </form>
+      <div className="editprofile__wrap">
+          <div className="editprofile__wrap-title d-flex justify-content-center">
+            <p className="text-primary fw-bold fs-2">Edit Profile</p>
           </div>
+          <form className="editprofile__wrap-form">
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-id-card"></i>
+              </span>
+              <input ref={loggedNameRef} defaultValue={loggedUser.name} type="text" autoComplete="new-password" required />
+              <label>Name</label>
+            </div>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-user"></i>
+              </span>
+              <input ref={loggedUsernameRef} defaultValue={loggedUser.username} type="text" autoComplete="new-password" required />
+              <label>Username</label>
+            </div>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-envelope"></i>
+              </span>
+              <input ref={loggedEmailRef} defaultValue={loggedUser.email} type="email" autoComplete="new-password" required />
+              <label>Email</label>
+            </div>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-user-circle"></i>
+              </span>
+              <input ref={loggedProfilePictureUrlRef} defaultValue={loggedUser.profilePictureUrl} type="text" autoComplete="new-password" required />
+              <label>Profile Picture URL</label>
+            </div>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-phone"></i>
+              </span>
+              <input ref={loggedPhoneNumberRef} defaultValue={loggedUser.phoneNumber} type="number" autoComplete="new-password" required />
+              <label>Phone Number</label>
+            </div>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bxs-notepad"></i>
+              </span>
+              <input ref={loggedBioRef} defaultValue={loggedUser.bio} type="text" autoComplete="new-password" required />
+              <label>Bio</label>
+            </div>
+            <div className="input-box">
+              <span className="input-box__icon">
+                <i className="bx bx-globe"></i>
+              </span>
+              <input ref={loggedWebsiteRef} defaultValue={loggedUser.website} type="text" autoComplete="new-password" required />
+              <label>Website</label>
+            </div>
+            <button type="submit" className="btn btn-primary w-100 p-2 mt-3" onClick={editProfile}>
+              Submit
+            </button>
+          </form>
         </div>
-      </div>
     </section>
   )
 }

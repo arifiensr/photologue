@@ -1,6 +1,7 @@
 @use '../../scss/variables' as *;
 
 .navbar {
+  border-right: 1px solid rgba($primary, 0.2);
   &__wrap {
     &_content {
       &-title {
