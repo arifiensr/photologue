@@ -3,6 +3,7 @@ import Modal from '../modal/Modal'
 import './timelinepost.scss'
 import { useEffect, useRef, useState } from 'react'
 import psApi from '../../api/psApi'
+import Post from './Post'
 
 export default function TimelinePost({ post }) {
   const [isLike, setIsLike] = useState(post.isLike)
@@ -77,7 +78,7 @@ export default function TimelinePost({ post }) {
         </div>
         <div className="timelinePost__content-icons">
           {isLike ? <i className="bx bxs-heart" onClick={(e) => unlikePost(e, post.id)} style={{ cursor: 'pointer' }}></i> : <i className="bx bx-heart" onClick={(e) => likePost(e, post.id)} style={{ cursor: 'pointer' }}></i>}
-          <i className="bx bx-message-rounded"></i>
+          <i className="bx bx-message-rounded" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}></i>
           <i className="bx bx-share-alt"></i>
         </div>
         <div className="timelinePost__content-likes">
@@ -90,7 +91,7 @@ export default function TimelinePost({ post }) {
               <>
                 {post.totalLikes} {post.totalLikes === 1 ? 'like' : 'likes'}
               </>
-            )}{' '}
+            )}
           </p>
         </div>
         <div className="timelinePost__content-caption">
@@ -103,7 +104,7 @@ export default function TimelinePost({ post }) {
           </form>
         </div>
       </div>
-      {/* <Modal post={post} /> */}
+      <Post post={post} />
     </section>
   )
 }

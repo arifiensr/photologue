@@ -70,7 +70,11 @@ export default function Follow({ user }) {
               </button>
             </>
           )
-        ) : null}
+        ) : (
+          <Link to={`/u/${loggedUser.id}`}>
+            <button className="ms-4">My Profile</button>
+          </Link>
+        )}
       </div>
     </section>
   )

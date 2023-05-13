@@ -86,13 +86,13 @@ export default function Profile() {
                 {userById.id !== loggedUser.id ? (
                   !isFollow ? (
                     <>
-                      <button className="btn btn-primary ms-4" onClick={followUser}>
+                      <button className="ms-4" onClick={followUser}>
                         Follow
                       </button>
                     </>
                   ) : (
                     <>
-                      <button className="btn btn-primary ms-4 p-1 p-sm-2" onClick={unfollowUser}>
+                      <button className="ms-4 p-1 p-sm-2" onClick={unfollowUser}>
                         Unfollow
                       </button>
                     </>
@@ -103,10 +103,10 @@ export default function Profile() {
                 <span className='text-center'>
                   <span className="fw-bold">{userById.totalPosts}</span> posts
                 </span>
-                <span className='text-center' data-bs-toggle="modal" data-bs-target="#followersModal">
+                <span className='text-center cursor' data-bs-toggle="modal" data-bs-target="#followersModal">
                   <span className="fw-bold">{userById.totalFollowers}</span> followers
                 </span>
-                <span className='text-center' data-bs-toggle="modal" data-bs-target="#followingModal">
+                <span className='text-center cursor' data-bs-toggle="modal" data-bs-target="#followingModal">
                   <span className="fw-bold">{userById.totalFollowing}</span> following
                 </span>
               </div>

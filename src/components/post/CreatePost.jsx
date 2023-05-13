@@ -37,24 +37,25 @@ export default function CreatePost() {
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
           <div className="modal-content border-primary">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="createPostModalLabel">
+              <h1 className="modal-title fs-5 text-primary" id="createPostModalLabel">
                 Create Post
               </h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form>
-                <div className="mb-3">
+                <div className="input-upload">
                   <label htmlFor="chooseImage" className="form-label">
-                    Choose Image
+                    <i className='bx bxs-cloud-upload'></i> Choose Image
                   </label>
-                  <input type="file" accept="image/*" onChange={handleImages} className="form-control" required />
+                  <input id="chooseImage" type="file" accept="image/*" onChange={handleImages} className="form-control" required />
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="caption" className="form-label">
-                    Caption
-                  </label>
-                  <input ref={createPostCaptionRef} type="text" className="form-control" required />
+                <div className="input-box">
+                  <span className="input-box__icon">
+                    <i className="bx bxs-edit"></i>
+                  </span>
+                  <input ref={createPostCaptionRef} type="text" autoComplete="new-password" required />
+                  <label>Caption</label>
                 </div>
               </form>
               <div className="mb-3 image-preview">
@@ -66,9 +67,6 @@ export default function CreatePost() {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                Close
-              </button>
               <button type="button" className="btn btn-primary" onClick={createPost}>
                 Submit
               </button>

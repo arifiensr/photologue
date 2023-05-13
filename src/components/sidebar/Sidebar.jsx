@@ -39,42 +39,42 @@ export default function Sidebar() {
                   <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
-                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                    <button className="border-0 fw-bold text-primary ms-4 bg-secondary">Follow</button>
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
-                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                    <button className="border-0 fw-bold text-primary ms-4 bg-secondary">Follow</button>
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
-                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                    <button className="border-0 fw-bold text-primary ms-4 bg-secondary">Follow</button>
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
-                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                    <button className="border-0 fw-bold text-primary ms-4 bg-secondary">Follow</button>
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
-                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                    <button className="border-0 fw-bold text-primary ms-4 bg-secondary">Follow</button>
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary text-center text-sm-start d-flex justify-content-between align-items-center p-0" aria-current="page">
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
-                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                    <button className="border-0 fw-bold text-primary ms-4 bg-secondary">Follow</button>
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
@@ -83,7 +83,7 @@ export default function Sidebar() {
                       <img src={loggedUser.profilePictureUrl} alt="" />
                       <span className="ms-2 d-none d-sm-inline">{loggedUser.username}</span>
                     </div>
-                    <button className="border-0 fw-bold text-primary ms-4">Follow</button>
+                    <button className="border-0 fw-bold text-primary ms-4 bg-secondary">Follow</button>
                   </Link>
                 </li>
               </ul>
