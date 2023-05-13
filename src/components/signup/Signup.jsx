@@ -29,64 +29,62 @@ export default function Signup() {
 
     const register = await psApi.registerUser(data)
     alert(register.message)
-    
+
     console.log(register)
   }
 
   return (
     <>
       <section id="signup" className="signup">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <h3>Sign Up</h3>
-              <form className="signup__form">
-                <div className="form-floating mb-2">
-                  <input ref={registerNameRef} type="text" className="form-control" placeholder="Name" id="floatingName" required />
-                  <label htmlFor="floatingName">Name</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerUsernameRef} type="text" className="form-control" placeholder="Username" id="floatingUsername" required />
-                  <label htmlFor="floatingUsername">Username</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerEmailRef} type="email" className="form-control" placeholder="Email" id="floatingEmail" required />
-                  <label htmlFor="floatingEmail">Email</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerPasswordRef} type="password" className="form-control" placeholder="Password" id="floatingPassword" required />
-                  <label htmlFor="floatingPassword">Password</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerPasswordRepeatRef} type="password" className="form-control" placeholder="PasswordRepeat" id="floatingPasswordRepeat" required />
-                  <label htmlFor="floatingPasswordRepeat">Password Repeat</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerProfilePictureUrlRef} type="text" className="form-control" placeholder="ProfilePictureUrl" id="floatingProfilePictureUrl" required />
-                  <label htmlFor="floatingProfilePictureUrl">Profile Picture URL</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerPhoneNumberRef} type="number" className="form-control" placeholder="PhoneNumber" id="floatingPhoneNumber" required />
-                  <label htmlFor="floatingPhoneNumber">Phone Number</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerBioRef} type="text" className="form-control" placeholder="Bio" id="floatingBio" required />
-                  <label htmlFor="floatingBio">Bio</label>
-                </div>
-                <div className="form-floating mb-2">
-                  <input ref={registerWebsiteRef} type="text" className="form-control" placeholder="Website" id="floatingWebsite" required />
-                  <label htmlFor="floatingWebsite">Website</label>
-                </div>
-
-                <div className="d-flex justify-content-end mt-3">
-                  <button type="submit" className="btn btn-primary" onClick={handleRegister}>
-                    Sign Up
-                  </button>
-                  <button className="btn btn-secondary ms-2 login-button">Login</button>
-                </div>
-              </form>
-            </div>
+        <div className="signup__wrap">
+          <div className="signup__wrap-title d-flex justify-content-center">
+            <p className='text-primary fw-bold fs-2'>Sign Up</p>
           </div>
+          <form className="signup__wrap-form">
+            <div className="form-floating mb-2">
+              <input ref={registerNameRef} type="text" className="form-control" placeholder="Name" id="floatingName" required />
+              <label htmlFor="floatingName">Name</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerUsernameRef} type="text" className="form-control" placeholder="Username" id="floatingUsername" required />
+              <label htmlFor="floatingUsername">Username</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerEmailRef} type="email" className="form-control" placeholder="Email" id="floatingEmail" required />
+              <label htmlFor="floatingEmail">Email</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerPasswordRef} type="password" className="form-control" placeholder="Password" id="floatingPassword" required />
+              <label htmlFor="floatingPassword">Password</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerPasswordRepeatRef} type="password" className="form-control" placeholder="PasswordRepeat" id="floatingPasswordRepeat" required />
+              <label htmlFor="floatingPasswordRepeat">Password Repeat</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerProfilePictureUrlRef} type="text" className="form-control" placeholder="ProfilePictureUrl" id="floatingProfilePictureUrl" required />
+              <label htmlFor="floatingProfilePictureUrl">Profile Picture URL</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerPhoneNumberRef} type="number" className="form-control" placeholder="PhoneNumber" id="floatingPhoneNumber" required />
+              <label htmlFor="floatingPhoneNumber">Phone Number</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerBioRef} type="text" className="form-control" placeholder="Bio" id="floatingBio" required />
+              <label htmlFor="floatingBio">Bio</label>
+            </div>
+            <div className="form-floating mb-2">
+              <input ref={registerWebsiteRef} type="text" className="form-control" placeholder="Website" id="floatingWebsite" required />
+              <label htmlFor="floatingWebsite">Website</label>
+            </div>
+
+            <div className="d-flex justify-content-end mt-3">
+              <button type="submit" className="btn btn-primary" onClick={handleRegister}>
+                Sign Up
+              </button>
+              <button className="btn btn-secondary ms-2 login-button">Login</button>
+            </div>
+          </form>
         </div>
       </section>
     </>

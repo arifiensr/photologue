@@ -113,17 +113,55 @@ export default function Modal({ user, post }) {
         </div>
       </div>
 
+      {/* Test Modal */}
+      <div className="modal fade" id={`createPostModal`} tabIndex={-1} aria-labelledby="testModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-xl modal-fullscreen-sm-down">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                Test title
+              </h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+            </div>
+            <div className="modal-body">
+              <img src={posting.imageUrl} alt="" />
+              <p>{posting.caption}</p>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatePostModal">
+                Edit Post
+              </button>
+              <button type="button" className="btn btn-dark" onClick={deletePost}>
+                Delete Post
+              </button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="button" className="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+            <div className="container">
+              <div className="row">
+                <div className="col-auto modal-content-img">Left</div>
+                <div className="col-3 modal-content-caption">Right</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Create Post Modal */}
-      <div className="modal fade" id={`createPostModal`} tabIndex={-1} aria-labelledby="createPostModalLabel" aria-hidden="true">
+      {/* <div className="modal fade" id={`createPostModal`} tabIndex={-1} aria-labelledby="createPostModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
           <div className="modal-content">
             <form>
-              {/* <div className="mb-3">
+              <div className="mb-3">
                 <label htmlFor="imageUrl" className="form-label">
                   Image URL
                 </label>
                 <input ref={createPostImageUrlRef} type="text" className="form-control" required />
-              </div> */}
+              </div>
               <div className="mb-3">
                 <label htmlFor="chooseImage" className="form-label">
                   Choose Image
@@ -143,7 +181,7 @@ export default function Modal({ user, post }) {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Update Post Modal */}
       <div className="modal fade" id={`updatePostModal`} tabIndex={-1} aria-labelledby="updatePostModalLabel" aria-hidden="true">

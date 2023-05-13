@@ -25,21 +25,21 @@ export default function NavbarMobile() {
     }
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        console.log(entry)
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show')
-        } else {
-          entry.target.classList.remove('show')
-        }
-      })
-    })
+  // useEffect(() => {
+    // const observer = new IntersectionObserver((entries) => {
+    //   entries.forEach((entry) => {
+    //     console.log(entry)
+    //     if (entry.isIntersecting) {
+    //       entry.target.classList.add('show')
+    //     } else {
+    //       entry.target.classList.remove('show')
+    //     }
+    //   })
+    // })
 
-    const hiddenElements = document.querySelectorAll('.hidden')
-    hiddenElements.forEach((el) => observer.observe(el))
-  }, [])
+    // const hiddenElements = document.querySelectorAll('.hidden')
+    // hiddenElements.forEach((el) => observer.observe(el))
+  // }, [])
 
   return (
       <section id="navbar-mobile" className="navbar-mobile fixed-bottom">

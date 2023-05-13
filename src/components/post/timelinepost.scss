@@ -1,17 +1,6 @@
 @use '../../scss/variables' as *;
 
-.postModal {
-.modal-content {
-  .modal-body {
-    button {
-      position: absolute;
-      right: 1rem;
-    }
-  }
-}
-}
-
-.post {
+.timelinePost {
   &__content {
     &-header {
       padding-left: 0.5rem;
@@ -58,14 +47,9 @@
 
     &-caption {
       padding-left: 0.5rem;
-      margin-bottom: 0.5rem;
     }
 
     &-comment {
-      p {
-        padding-left: 0.5rem;
-        margin: 0;
-      }
       form {
         position: relative;
         input {

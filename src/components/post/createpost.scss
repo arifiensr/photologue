@@ -1,0 +1,23 @@
+@use '../../scss/variables' as *;
+
+.createPost {
+  .modal-content {
+    background-color: $secondary;
+    .modal-header{
+
+    }
+
+    .modal-body {
+.image-preview {
+  img {
+    max-width: 100%;
+    max-height: 20rem;
+  }
+}
+    }
+
+    .modal-footer {
+
+    }
+  }
+}

@@ -1,18 +1,24 @@
 @use '../../scss/variables' as *;
 
 .navbar {
-  
-  border-right: 1px solid rgba($primary, 0.2);
   &__wrap {
     &_content {
       &-title {
         transition: all 0.5s;
+
+        img {
+          width: auto;
+          height: 2.1rem;
+          padding-left: 0.7rem;
+          padding-right: 0.7rem;
+        }
 
         &:hover {
           a {
             span {
               scale: 1.05;
             }
+
           }
         }
       }
@@ -51,17 +57,4 @@
       }
     }
   }
-}
-
-.hidden {
-  opacity: 0;
-  filter: blur(5px);
-  transform: translateX(-100%);
-  transition: all 1s;
-}
-
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
 }

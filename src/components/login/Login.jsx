@@ -2,6 +2,7 @@ import { useContext, useRef } from 'react'
 import './login.scss'
 import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
+import logoPhotologue from '../../assets/images/logo/photologue1.png'
 
 export default function Login() {
   const { setIsLogin, setLoggedUser } = useContext(GlobalContext)
@@ -44,33 +45,33 @@ export default function Login() {
     <section id="login" className="login">
       <div className="login__wrap">
         <div className="login__wrap-title d-flex justify-content-center">
-          <h2>LOGIN</h2>
+          <img src={logoPhotologue} alt="" />
         </div>
         <form className="login__wrap-form">
-          <div className="form-floating mb-2">
-            <input ref={loginEmailRef} type="text" className="form-control" placeholder="email" id="loginEmail" required />
+          <div className="form-floating mb-4">
+            <input ref={loginEmailRef} type="email" className="form-control" placeholder="email" id="loginEmail" required />
             <label htmlFor="loginEmail">Email</label>
             <i className="bx bxs-envelope"></i>
           </div>
-          <div className="form-floating mb-2">
-            <input ref={loginPasswordRef} type="text" className="form-control" placeholder="email" id="loginPassword" required />
+          <div className="form-floating mb-4">
+            <input ref={loginPasswordRef} type="password" className="form-control" placeholder="email" id="loginPassword" required />
             <label htmlFor="loginPassword">Password</label>
             <i className="bx bxs-lock-alt"></i>
           </div>
-          <div className="remember-forgot mb-2">
+          <div className="remember-forgot mb-4">
             <label>
               <input type="checkbox" />
               Remember me
             </label>
-            <a href="#">Forgot Password?</a>
+            <a href="#" className='text-decoration-none fw-bold'>Forgot Password?</a>
           </div>
           <button type="submit" className="btn btn-primary w-100 p-2 mt-3" onClick={loginUser}>
-            Submit
+            Login
           </button>
-          <div className="register d-flex justify-content-center mt-3">
+          <div className="register d-flex justify-content-center mt-4">
             <p>
               Don't have an account?{' '}
-              <a href="#" className="register-link">
+              <a href="#" className="text-decoration-none fw-bold register-link">
                 Register
               </a>
             </p>

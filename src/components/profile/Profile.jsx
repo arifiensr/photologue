@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './profile.scss'
 import { createContext, useContext, useEffect, useState } from 'react'
 import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
 import Modal from '../modal/Modal'
+import Post from '../post/Post'
 
 export default function Profile() {
   const { id } = useParams()
@@ -131,16 +132,22 @@ export default function Profile() {
             {userById.posts &&
               userById.posts.map((post, i) => {
                 return (
-                  <div key={i} className="col-4 profile__posts-post" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
+                  <div key={i} className="col-4 profile__posts-post p-1" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
                     <img src={post.imageUrl} alt="" />
-                    <Modal post={post} />
+                    <Post post={post}/>
                   </div>
                 )
               })}
           </div>
         </div>
       </div>
-      <Modal user={userById} />
+      {/* <Modal user={userById} /> */}
     </section>
   )
+}
+{
+  /* <div key={i} className="col-4 profile__posts-post" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
+                      <img src={post.imageUrl} alt="" />
+                      <Modal post={post} />
+                    </div> */
 }

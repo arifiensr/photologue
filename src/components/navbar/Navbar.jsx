@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
+import logoPhotologue from '../../assets/images/logo/photologue1.png'
 import psApi from '../../api/psApi'
 import './navbar.scss'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
+import CreatePost from '../post/CreatePost'
 import Modal from '../modal/Modal'
 
 export default function Navbar() {
@@ -25,21 +27,47 @@ export default function Navbar() {
     }
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        console.log(entry)
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show')
-        } else {
-          entry.target.classList.remove('show')
-        }
-      })
-    })
+  // useEffect(() => {
+    // const observer = new IntersectionObserver((entries) => {
+    //   entries.forEach((entry) => {
+    //     console.log(entry)
+    //     if (entry.isIntersecting) {
+    //       entry.target.classList.add('show')
+    //     } else {
+    //       entry.target.classList.remove('show')
+    //     }
+    //   })
+    // })
 
-    const hiddenElements = document.querySelectorAll('.hidden')
-    hiddenElements.forEach((el) => observer.observe(el))
-  }, [])
+    // const hiddenElements = document.querySelectorAll('.hidden')
+    // hiddenElements.forEach((el) => observer.observe(el))
+  // }, [])
+
+  const [images, setImages] = useState()
+  const [imagesPreview, setImagesPreview] = useState()
+  const createPostCaptionRef = useRef()
+
+  function handleImages(e) {
+    setImages(e.target.files[0])
+    setImagesPreview(URL.createObjectURL(e.target.files[0]))
+  }
+
+  async function createPost(e) {
+    e.preventDefault()
+
+    const formData = new FormData()
+    formData.append('image', images)
+
+    const imageUrl = await psApi.uploadImage(formData, token)
+
+    const data = {
+      imageUrl: imageUrl.url,
+      caption: createPostCaptionRef.current.value,
+    }
+
+    const newPost = await psApi.createPost(data, token)
+    alert(newPost.message)
+  }
 
   return (
     <section id="navbar" className="navbar p-0 position-fixed">
@@ -49,7 +77,8 @@ export default function Navbar() {
             <div className="navbar__wrap_content mt-4">
               <div className="navbar__wrap_content-title d-flex justify-content-center align-items-center">
                 <a className="text-primary d-none d-xl-inline text-decoration-none d-flex justify-content-center align-items-center" role="button">
-                  <span className="fs-4 fw-bold">Photologue</span>
+                  {/* <span className="fs-4 fw-bold">Photologue</span> */}
+                  <img src={logoPhotologue} alt="" />
                 </a>
               </div>
               <hr className="text-primary d-none d-xl-block" />

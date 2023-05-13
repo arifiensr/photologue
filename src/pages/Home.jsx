@@ -9,6 +9,7 @@ import { useContext, useEffect } from 'react'
 import { GlobalContext } from '../config/GlobalState'
 import Auth from './Auth'
 import NavbarMobile from '../components/navbar/NavbarMobile'
+import CreatePost from '../components/post/CreatePost'
 
 export default function Home() {
   const { isLogin } = useContext(GlobalContext)
@@ -28,11 +29,12 @@ export default function Home() {
                 <div className="col-12 col-sm-11 col-xl-9 p-0">
                   <Outlet />
                 </div>
-                <div className='col-12 d-flex d-sm-none'>
+                <div className="col-12 d-flex d-sm-none">
                   <NavbarMobile />
                 </div>
               </div>
             </div>
+            <CreatePost />
           </>
         )}
       </section>
