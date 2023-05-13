@@ -92,25 +92,25 @@ export default function Profile() {
                     </>
                   ) : (
                     <>
-                      <button className="btn btn-primary ms-4" onClick={unfollowUser}>
+                      <button className="btn btn-primary ms-4 p-1 p-sm-2" onClick={unfollowUser}>
                         Unfollow
                       </button>
                     </>
                   )
                 ) : null}
               </div>
-              <div className="profile__header-caption-2 d-flex gap-5 mt-3">
-                <span>
+              <div className="profile__header-caption-2 d-flex gap-3 mt-3 gap-sm-5">
+                <span className='text-center'>
                   <span className="fw-bold">{userById.totalPosts}</span> posts
                 </span>
-                <span data-bs-toggle="modal" data-bs-target="#followersModal">
+                <span className='text-center' data-bs-toggle="modal" data-bs-target="#followersModal">
                   <span className="fw-bold">{userById.totalFollowers}</span> followers
                 </span>
-                <span data-bs-toggle="modal" data-bs-target="#followingModal">
+                <span className='text-center' data-bs-toggle="modal" data-bs-target="#followingModal">
                   <span className="fw-bold">{userById.totalFollowing}</span> following
                 </span>
               </div>
-              <div className="profile__header-caption-3 mt-3">
+              <div className="profile__header-caption-3 mt-3 d-none d-sm-block">
                 {userById.name && <p className="fw-bold">{userById.name}</p>}
                 {userById.bio && <p>{userById.bio}</p>}
                 {userById.website && (
@@ -118,8 +118,16 @@ export default function Profile() {
                     {userById.website}
                   </a>
                 )}
-                <p></p>
               </div>
+            </div>
+            <div className="col-12 profile__header-mobile d-block d-sm-none mt-2">
+            {userById.name && <p className="fw-bold m-0">{userById.name}</p>}
+                {userById.bio && <p className='m-0'>{userById.bio}</p>}
+                {userById.website && (
+                  <a href={userById.website} target="_blank">
+                    {userById.website}
+                  </a>
+                )}
             </div>
           </div>
         </div>
@@ -128,11 +136,11 @@ export default function Profile() {
       {/* Profile Posts */}
       <div className="profile__posts">
         <div className="container">
-          <div className="row">
+          <div className="row row-cols-3">
             {userById.posts &&
               userById.posts.map((post, i) => {
                 return (
-                  <div key={i} className="col-4 profile__posts-post p-1" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
+                  <div key={i} className="col profile__posts-post" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
                     <img src={post.imageUrl} alt="" />
                     <Post post={post} />
                   </div>

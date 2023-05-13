@@ -46,9 +46,13 @@ export default function NavbarMobile() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-auto navbar-mobile__content w-100 d-flex justify-content-around align-items-center">
-            <i className="bx bx-home"></i>
-            <i className="bx bx-plus-circle"></i>
-            <img src={loggedUser.profilePictureUrl} alt="" />
+            <Link to={`/`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+              <i className="bx bx-home"></i>
+            </Link>
+            <i className="bx bx-plus-circle" data-bs-toggle="modal" data-bs-target="#createPostModal"></i>
+            <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+              <img src={loggedUser.profilePictureUrl} alt="" />
+            </Link>
           </div>
         </div>
       </div>

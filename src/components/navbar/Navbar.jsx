@@ -96,14 +96,14 @@ export default function Navbar() {
                   </a>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-                  <Link to={`/u/${loggedUser.id}`} href="#" className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
                     {/* <i className="bx bx-user"></i> */}
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-xl-inline">Profile</span>
                   </Link>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-                  <Link to={`/editprofile`} href="#" className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                  <Link to={`/editprofile`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
                     <i className="bx bx-cog"></i>
                     <span className="ms-2 d-none d-xl-inline">Edit Profile</span>
                   </Link>

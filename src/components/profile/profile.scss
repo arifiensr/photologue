@@ -13,6 +13,11 @@
         height: 10rem;
         border-radius: 50%;
         object-fit: cover;
+
+        @include media-breakpoint-down(sm) {
+          width: 6.5rem;
+          height: 6.5rem;
+        }
       }
     }
 
@@ -28,11 +33,22 @@
   &__posts {
     padding: 1rem 0rem;
 
+    @include media-breakpoint-down(sm) {
+      padding-left: 1px !important;
+      padding-right: 1px !important;
+    }
+
     &-post {
       // height: 17rem;
       margin: 0;
-      padding: 0.15rem;
+      padding: 0 !important;
+      padding-right: 4px !important;
+      padding-top: 4px !important;
 
+      @include media-breakpoint-down(sm) {
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+      }
       img {
         aspect-ratio: 1 / 1;
         width: 100%;
