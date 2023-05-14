@@ -17,7 +17,7 @@ export default function UpdatePost({ post }) {
   async function updatePost(e) {
     e.preventDefault()
 
-    const imageUrl = { url: post.imageUrl }
+    let imageUrl = { url: post.imageUrl }
 
     if (images) {
       const formData = new FormData()
