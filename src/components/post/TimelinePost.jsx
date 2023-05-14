@@ -67,23 +67,23 @@ export default function TimelinePost({ post }) {
 
 
   useEffect(() => {
-    // const observer = new IntersectionObserver((entries) => {
-    //   entries.forEach((entry) => {
-    //     console.log(entry)
-    //     if (entry.isIntersecting) {
-    //       entry.target.classList.add('show')
-    //     } else {
-    //       entry.target.classList.remove('show')
-    //     }
-    //   })
-    // })
-    // const hiddenElements = document.querySelectorAll('.timeline__post')
-    // hiddenElements.forEach((el) => observer.observe(el))
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry)
+        if (entry.isIntersecting) {
+          entry.target.classList.add('timelinePost__show')
+        } else {
+          entry.target.classList.remove('timelinePost__show')
+        }
+      })
+    })
+    const hiddenElements = document.querySelectorAll('.timelinePost__hidden')
+    hiddenElements.forEach((el) => observer.observe(el))
   }, [])
 
   return (
     <section id="timelinePost" className="timelinePost">
-      <div className="h-100 border-bottom py-3 timelinePost__content">
+      <div className="h-100 border-bottom py-3 timelinePost__content timelinePost__hidden">
         <Link to={`/u/${post.user?.id}`} className="text-decoration-none">
           <div className="timelinePost__content-header d-inline">
             <img src={post.user?.profilePictureUrl} alt="" />
