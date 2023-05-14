@@ -1,6 +1,7 @@
 @use '../../scss/variables' as *;
 
 .navbar-mobile {
+  z-index: 999999;
   &__content {
     background-color: $secondary;
     border-top: 1px solid rgba($primary, 0.2);

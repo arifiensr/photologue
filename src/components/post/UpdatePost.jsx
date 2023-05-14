@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import psApi from '../../api/psApi'
-import { Link } from 'react-router-dom'
 import './updatepost.scss'
 
 export default function UpdatePost({ post }) {

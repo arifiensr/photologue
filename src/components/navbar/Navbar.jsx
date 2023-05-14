@@ -2,10 +2,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import logoPhotologue from '../../assets/images/logo/photologue1.png'
 import psApi from '../../api/psApi'
 import './navbar.scss'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
-import CreatePost from '../post/CreatePost'
-import Modal from '../modal/Modal'
 
 export default function Navbar() {
   const { loggedUser, setIsLogin } = useContext(GlobalContext)
@@ -26,22 +24,6 @@ export default function Navbar() {
       alert(`${err.response.data.message}`)
     }
   }
-
-  // useEffect(() => {
-    // const observer = new IntersectionObserver((entries) => {
-    //   entries.forEach((entry) => {
-    //     console.log(entry)
-    //     if (entry.isIntersecting) {
-    //       entry.target.classList.add('show')
-    //     } else {
-    //       entry.target.classList.remove('show')
-    //     }
-    //   })
-    // })
-
-    // const hiddenElements = document.querySelectorAll('.hidden')
-    // hiddenElements.forEach((el) => observer.observe(el))
-  // }, [])
 
   const [images, setImages] = useState()
   const [imagesPreview, setImagesPreview] = useState()
@@ -77,7 +59,6 @@ export default function Navbar() {
             <div className="navbar__wrap_content mt-4">
               <div className="navbar__wrap_content-title d-flex justify-content-center align-items-center">
                 <a className="text-primary d-none d-xl-inline text-decoration-none d-flex justify-content-center align-items-center" role="button">
-                  {/* <span className="fs-4 fw-bold">Photologue</span> */}
                   <img src={logoPhotologue} alt="" />
                 </a>
               </div>
@@ -97,7 +78,6 @@ export default function Navbar() {
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
-                    {/* <i className="bx bx-user"></i> */}
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-xl-inline">Profile</span>
                   </Link>

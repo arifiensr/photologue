@@ -48,16 +48,6 @@ export default function Login() {
           <img src={logoPhotologue} alt="" />
         </div>
         <form className="login__wrap-form" autoComplete="off">
-          {/* <div className="form-floating mb-4">
-            <input ref={loginEmailRef} type="email" className="form-control" placeholder="email" id="loginEmail" required />
-            <label htmlFor="loginEmail">Email</label>
-            <i className="bx bxs-envelope"></i>
-          </div>
-          <div className="form-floating mb-4">
-            <input ref={loginPasswordRef} type="password" className="form-control" placeholder="email" id="loginPassword" required />
-            <label htmlFor="loginPassword">Password</label>
-            <i className="bx bxs-lock-alt"></i>
-          </div> */}
           <div className="input-box">
             <span className="input-box__icon">
               <i className="bx bxs-envelope"></i>

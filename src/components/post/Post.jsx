@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './post.scss'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
 import UpdatePost from './UpdatePost'
@@ -65,19 +65,6 @@ export default function Post({ post }) {
   }
 
   useEffect(() => {
-    // const observer = new IntersectionObserver((entries) => {
-    //   entries.forEach((entry) => {
-    //     console.log(entry)
-    //     if (entry.isIntersecting) {
-    //       entry.target.classList.add('show')
-    //     } else {
-    //       entry.target.classList.remove('show')
-    //     }
-    //   })
-    // })
-    // const hiddenElements = document.querySelectorAll('.timeline__post')
-    // hiddenElements.forEach((el) => observer.observe(el))
-
     async function getPostById(id) {
       const postId = id
       const getPostId = await psApi.getPostById(postId, token)

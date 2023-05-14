@@ -1,9 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import psApi from '../../api/psApi'
 import './navbarmobile.scss'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
-import Modal from '../modal/Modal'
 
 export default function NavbarMobile() {
   const { loggedUser, setIsLogin } = useContext(GlobalContext)
@@ -24,22 +23,6 @@ export default function NavbarMobile() {
       alert(`${err.response.data.message}`)
     }
   }
-
-  // useEffect(() => {
-  // const observer = new IntersectionObserver((entries) => {
-  //   entries.forEach((entry) => {
-  //     console.log(entry)
-  //     if (entry.isIntersecting) {
-  //       entry.target.classList.add('show')
-  //     } else {
-  //       entry.target.classList.remove('show')
-  //     }
-  //   })
-  // })
-
-  // const hiddenElements = document.querySelectorAll('.hidden')
-  // hiddenElements.forEach((el) => observer.observe(el))
-  // }, [])
 
   return (
     <section id="navbar-mobile" className="navbar-mobile fixed-bottom">

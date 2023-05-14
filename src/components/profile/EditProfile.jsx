@@ -30,9 +30,7 @@ export default function EditProfile() {
         website: loggedWebsiteRef.current.value,
       }
 
-      // console.log(nameRef.current.value)
       const updateUserProfile = await psApi.updateUserProfile(data, token)
-      // console.log(updateUserProfile)
 
       // * Update User Data
       const loggedUser = await psApi.getLoggedUser(token)

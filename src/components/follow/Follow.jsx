@@ -55,7 +55,6 @@ export default function Follow({ user }) {
             <span>{user.username}</span>
           </div>
         </Link>
-        {/* <button className="btn btn-primary">Follow</button> */}
         {user.id !== loggedUser.id ? (
           !isFollow ? (
             <>

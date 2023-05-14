@@ -1,6 +1,6 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './profile.scss'
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
 import Modal from '../modal/Modal'
@@ -62,7 +62,7 @@ export default function Profile() {
       userById.data.following = followingByUserId.data.users
       userById.data.followers = followersByUserId.data.users
 
-      const userPosts = await psApi.getPostByUserId(id, token, { params: { size: 10, page: 1 } })
+      const userPosts = await psApi.getPostByUserId(id, token, { params: { size: 20, page: 1 } })
       userById.data.totalPosts = userPosts.data.totalItems
       userById.data.posts = userPosts.data.posts
 
