@@ -127,8 +127,7 @@
 .createPost {
   .modal-content {
     background-color: $secondary;
-    .modal-header {
-    }
+
 
     .modal-body {
       .image-preview {
@@ -202,16 +201,12 @@
       }
     }
 
-    .modal-footer {
-    }
   }
 }
 
 .updatePost {
   .modal-content {
     background-color: $secondary;
-    .modal-header {
-    }
 
     .modal-body {
       .image-preview {
@@ -283,9 +278,6 @@
           }
         }
       }
-    }
-
-    .modal-footer {
     }
   }
 }
