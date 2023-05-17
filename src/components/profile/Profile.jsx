@@ -3,8 +3,8 @@ import './profile.scss'
 import { useContext, useEffect, useState } from 'react'
 import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
-import Modal from '../modal/Modal'
-import Post from '../post/Post'
+import FollowModal from '../modal/FollowModal'
+import PostModal from '../modal/PostModal'
 
 export default function Profile() {
   const { id } = useParams()
@@ -142,14 +142,14 @@ export default function Profile() {
                 return (
                   <div key={i} className="col profile__posts-post">
                     <img src={post.imageUrl} alt="" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`} />
-                    <Post post={post} />
+                    <PostModal post={post} />
                   </div>
                 )
               })}
           </div>
         </div>
       </div>
-      <Modal user={userById} />
+      <FollowModal user={userById} />
     </section>
   )
 }

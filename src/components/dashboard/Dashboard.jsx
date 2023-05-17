@@ -26,7 +26,6 @@ export default function Dashboard() {
       setFollowingPost(followingPost.data.posts)
     }
     getFollowingPost()
-    console.log(1)
   }, [])
 
   return (

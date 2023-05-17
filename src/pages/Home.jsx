@@ -1,15 +1,9 @@
 import Navbar from '../components/navbar/Navbar'
-import Timeline from '../components/dashboard/Dashboard'
-import Sidebar from '../components/sidebar/Sidebar'
-import Footer from '../components/footer/Footer'
-import { Link, Outlet, Route, Routes } from 'react-router-dom'
-import Profile from '../components/profile/Profile'
-import EditProfile from '../components/profile/EditProfile'
+import { Outlet } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { GlobalContext } from '../config/GlobalState'
 import Auth from './Auth'
 import NavbarMobile from '../components/navbar/NavbarMobile'
-import CreatePost from '../components/post/CreatePost'
 
 export default function Home() {
   const { isLogin } = useContext(GlobalContext)
@@ -56,9 +50,8 @@ export default function Home() {
               </div>
             </div>
             <button onClick={topFunction} id="back-to-top-button" title="Go to top">
-              <i className='bx bx-chevron-up'></i>
+              <i className="bx bx-chevron-up"></i>
             </button>
-            <CreatePost />
           </>
         )}
       </section>
