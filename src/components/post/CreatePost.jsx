@@ -28,6 +28,7 @@ export default function CreatePost() {
 
     const newPost = await psApi.createPost(data, token)
     alert(newPost.message)
+    window.location.reload()
   }
 
   return (

@@ -3,7 +3,7 @@ import './post.scss'
 import { useContext, useEffect, useState } from 'react'
 import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
-import UpdatePost from './UpdatePost'
+import setTime from '../../config/setTime'
 
 export default function Post({ post }) {
   const [isLike, setIsLike] = useState(post.isLike)
@@ -20,6 +20,7 @@ export default function Post({ post }) {
     }
 
     const like = await psApi.likePost(data, token)
+    console.log(like.message)
     postModal.totalLikes++
     setIsLike(true)
   }
@@ -32,6 +33,7 @@ export default function Post({ post }) {
     }
 
     const unlike = await psApi.unlikePost(data, token)
+    console.log(unlike.message)
     postModal.totalLikes--
     setIsLike(false)
   }
@@ -44,6 +46,7 @@ export default function Post({ post }) {
         const postId = postModal.id
         const deletePost = await psApi.deletePost(postId, token)
         alert(deletePost.message)
+        window.location.reload()
       }
     } catch (err) {
       alert(err.response.data.message)
@@ -61,17 +64,30 @@ export default function Post({ post }) {
     const createComment = await psApi.createComment(data, token)
 
     setComment('')
+    getPostById(post.id)
     alert(createComment.message)
   }
 
-  useEffect(() => {
-    async function getPostById(id) {
-      const postId = id
-      const getPostId = await psApi.getPostById(postId, token)
-      getPostId.data.totalLikes = post.totalLikes
-      getPostId.data.isLike = post.isLike
-      setPostModal(getPostId.data)
+  async function deleteComment(e, id) {
+    e.preventDefault()
+
+    let text = 'Are you sure to delete this comment?'
+    if (confirm(text) === true) {
+      const deleteComment = await psApi.deleteComment(id, token)
+      console.log(deleteComment)
+      getPostById(post.id)
     }
+  }
+
+  async function getPostById(id) {
+    const postId = id
+    const getPostId = await psApi.getPostById(postId, token)
+    getPostId.data.totalLikes = post.totalLikes
+    getPostId.data.isLike = post.isLike
+    setPostModal(getPostId.data)
+  }
+
+  useEffect(() => {
     getPostById(post.id)
   }, [])
 
@@ -110,15 +126,18 @@ export default function Post({ post }) {
                   </div>
                   <div className="post__content-likes">
                     <p className="fw-bold m-0 pb-2">
-                      {postModal.totalLikes === 0 ? (
-                        <>
-                          <span className="fw-normal">Be first to </span>like this
-                        </>
-                      ) : (
-                        <>
-                          {postModal.totalLikes} {postModal.totalLikes === 1 ? 'like' : 'likes'}
-                        </>
-                      )}{' '}
+                      <span>
+                        {postModal.totalLikes === 0 ? (
+                          <>
+                            <span className="fw-normal">Be first to </span>like this
+                          </>
+                        ) : (
+                          <>
+                            {postModal.totalLikes} {postModal.totalLikes === 1 ? 'like' : 'likes'}
+                          </>
+                        )}
+                      </span>
+                      <span className="fw-light"> - {setTime(postModal.updatedAt)}</span>
                     </p>
                   </div>
                   <div className="post__content-caption">
@@ -127,10 +146,14 @@ export default function Post({ post }) {
                   <div className="post__content-comment">
                     {postModal.comments &&
                       postModal.comments.map((comment, i) => {
+                        console.log(comment);
                         return (
-                          <p key={i}>
-                            <span className="fw-bold">{comment.user.username}</span> {comment.comment}
-                          </p>
+                          <div key={i} className="d-flex justify-content-between">
+                            <span>
+                              <span className="fw-bold">{comment.user.username}</span> {comment.comment}
+                            </span>
+                            <span>{comment.user.id === loggedUser.id ? <i className="bx bxs-trash-alt" onClick={(e) => deleteComment(e, comment.id)}></i> : null}</span>
+                          </div>
                         )
                       })}
                     <form>

@@ -44,13 +44,13 @@ export default function Home() {
           <>
             <div className="container">
               <div className="row">
-                <div className="col-sm-1 col-xl-3 d-flex justify-content-end p-0 d-none d-sm-flex">
+                <div className="col-sm-1 col-xl-3 d-flex justify-content-end p-0 d-none d-sm-flex homepage__navbar">
                   <Navbar />
                 </div>
-                <div className="col-12 col-sm-11 col-xl-9 p-0">
+                <div className="col-12 col-sm-11 col-xl-9 p-0 homepage__outlet ">
                   <Outlet />
                 </div>
-                <div className="col-12 d-flex d-sm-none">
+                <div className="col-12 d-flex d-sm-none homepage__navbarmobile">
                   <NavbarMobile />
                 </div>
               </div>

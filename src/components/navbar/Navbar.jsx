@@ -25,32 +25,6 @@ export default function Navbar() {
     }
   }
 
-  const [images, setImages] = useState()
-  const [imagesPreview, setImagesPreview] = useState()
-  const createPostCaptionRef = useRef()
-
-  function handleImages(e) {
-    setImages(e.target.files[0])
-    setImagesPreview(URL.createObjectURL(e.target.files[0]))
-  }
-
-  async function createPost(e) {
-    e.preventDefault()
-
-    const formData = new FormData()
-    formData.append('image', images)
-
-    const imageUrl = await psApi.uploadImage(formData, token)
-
-    const data = {
-      imageUrl: imageUrl.url,
-      caption: createPostCaptionRef.current.value,
-    }
-
-    const newPost = await psApi.createPost(data, token)
-    alert(newPost.message)
-  }
-
   return (
     <section id="navbar" className="navbar p-0 position-fixed">
       <div className="container-fluid">

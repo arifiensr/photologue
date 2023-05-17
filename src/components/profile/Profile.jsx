@@ -100,13 +100,13 @@ export default function Profile() {
                 ) : null}
               </div>
               <div className="profile__header-caption-2 d-flex gap-3 mt-3 gap-sm-5">
-                <span className='text-center'>
+                <span className="text-center">
                   <span className="fw-bold">{userById.totalPosts}</span> posts
                 </span>
-                <span className='text-center cursor' data-bs-toggle="modal" data-bs-target="#followersModal">
+                <span className="text-center cursor" data-bs-toggle="modal" data-bs-target="#followersModal">
                   <span className="fw-bold">{userById.totalFollowers}</span> followers
                 </span>
-                <span className='text-center cursor' data-bs-toggle="modal" data-bs-target="#followingModal">
+                <span className="text-center cursor" data-bs-toggle="modal" data-bs-target="#followingModal">
                   <span className="fw-bold">{userById.totalFollowing}</span> following
                 </span>
               </div>
@@ -121,13 +121,13 @@ export default function Profile() {
               </div>
             </div>
             <div className="col-12 profile__header-mobile d-block d-sm-none mt-2">
-            {userById.name && <p className="fw-bold m-0">{userById.name}</p>}
-                {userById.bio && <p className='m-0'>{userById.bio}</p>}
-                {userById.website && (
-                  <a href={userById.website} target="_blank">
-                    {userById.website}
-                  </a>
-                )}
+              {userById.name && <p className="fw-bold m-0">{userById.name}</p>}
+              {userById.bio && <p className="m-0">{userById.bio}</p>}
+              {userById.website && (
+                <a href={userById.website} target="_blank">
+                  {userById.website}
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -140,8 +140,8 @@ export default function Profile() {
             {userById.posts &&
               userById.posts.map((post, i) => {
                 return (
-                  <div key={i} className="col profile__posts-post" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
-                    <img src={post.imageUrl} alt="" />
+                  <div key={i} className="col profile__posts-post">
+                    <img src={post.imageUrl} alt="" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`} />
                     <Post post={post} />
                   </div>
                 )
@@ -152,10 +152,4 @@ export default function Profile() {
       <Modal user={userById} />
     </section>
   )
-}
-{
-  /* <div key={i} className="col-4 profile__posts-post" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}>
-                      <img src={post.imageUrl} alt="" />
-                      <Modal post={post} />
-                    </div> */
 }
