@@ -52,20 +52,20 @@ export default function Follow({ user }) {
         {user.id !== loggedUser.id ? (
           !isFollow ? (
             <>
-              <button className="ms-4" onClick={followUser}>
+              <button className="ms-4 button-solid" onClick={followUser}>
                 Follow
               </button>
             </>
           ) : (
             <>
-              <button className="ms-4" onClick={unfollowUser}>
+              <button className="ms-4 button-empty" onClick={unfollowUser}>
                 Unfollow
               </button>
             </>
           )
         ) : (
-          <Link to={`/u/${loggedUser.id}`}>
-            <button className="ms-4">My Profile</button>
+          <Link to={`/u/${loggedUser.id}`} onClick={dismissModal}>
+            <button className="ms-4 button-solid">My Profile</button>
           </Link>
         )}
       </div>

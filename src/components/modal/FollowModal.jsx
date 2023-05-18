@@ -2,6 +2,7 @@ import Follow from '../follow/Follow'
 import './followmodal.scss'
 
 export default function FollowModal({ user }) {
+  console.log(user.followers)
   return (
     <>
       {/* Followers Modal */}
@@ -16,7 +17,7 @@ export default function FollowModal({ user }) {
               {user?.followers &&
                 (user.followers.length !== 0 ? (
                   user.followers.map((follower, i) => {
-                    return <FollowModal key={i} user={follower} />
+                    return <Follow key={i} user={follower} />
                   })
                 ) : (
                   <>No Follower</>

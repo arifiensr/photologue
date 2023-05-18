@@ -86,13 +86,13 @@ export default function Profile() {
                 {userById.id !== loggedUser.id ? (
                   !isFollow ? (
                     <>
-                      <button className="ms-4" onClick={followUser}>
+                      <button className="ms-4 button-solid" onClick={followUser}>
                         Follow
                       </button>
                     </>
                   ) : (
                     <>
-                      <button className="ms-4 p-1 p-sm-2" onClick={unfollowUser}>
+                      <button className="ms-4 button-empty" onClick={unfollowUser}>
                         Unfollow
                       </button>
                     </>

@@ -17,9 +17,15 @@ export default function PostModal({ post }) {
   const updatePostCaptionRef = useRef(post.caption)
 
   function handleImages(e) {
-    console.log(e.target.files)
-    setImages(e.target.files[0])
-    setImagesPreview(URL.createObjectURL(e.target.files[0]))
+    if (e.target.files[0].size < 1024 * 1024) {
+      setImages(e.target.files[0])
+      setImagesPreview(URL.createObjectURL(e.target.files[0]))
+      console.log(e.target.files[0])
+    } else {
+      setImages()
+      setImagesPreview()
+      alert('File is to big! Max size is 1MB.')
+    }
   }
 
   async function updatePost(e) {
@@ -218,7 +224,7 @@ export default function PostModal({ post }) {
                           <div key={i} className="d-flex justify-content-between">
                             <span>
                               <Link to={`/u/${comment.user?.id}`} className="fw-bold text-decoration-none text-black" onClick={dismissModal}>
-                              <img src={comment.user?.profilePictureUrl} alt="" />
+                                <img src={comment.user?.profilePictureUrl} alt="" />
                                 <span> {comment.user.username}</span>
                               </Link>{' '}
                               {comment.comment}

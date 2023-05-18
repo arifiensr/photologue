@@ -1,0 +1,21 @@
+@use './variables' as *;
+
+@mixin button-solid ($width: 100%) {
+  width: $width;
+  background-color: $primary;
+  color: $secondary;
+  font-weight: 600;
+  border: 3px solid $primary;
+  border-radius: 5px;
+  padding: 0.25rem;
+}
+
+@mixin button-empty ($width: 100%) {
+  width: $width;
+  background-color: $secondary;
+  color: $primary;
+  font-weight: 600;
+  border: 3px solid $primary;
+  border-radius: 5px;
+  padding: 0.25rem;
+}
