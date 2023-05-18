@@ -1,17 +1,7 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import './modal.scss'
-import psApi from '../../api/psApi'
-import { Link } from 'react-router-dom'
-import { GlobalContext } from '../../config/GlobalState'
 import Follow from '../follow/Follow'
+import './followmodal.scss'
 
-export default function Modal({ user, post }) {
-  const token = JSON.parse(localStorage.getItem('token'))
-
-  const { loggedUser } = useContext(GlobalContext)
-  const [isFollow, setIsFollow] = useState(loggedUser.followingId.includes(user.id))
-  const [posting, setPosting] = useState([])
-
+export default function FollowModal({ user }) {
   return (
     <>
       {/* Followers Modal */}
@@ -26,7 +16,7 @@ export default function Modal({ user, post }) {
               {user?.followers &&
                 (user.followers.length !== 0 ? (
                   user.followers.map((follower, i) => {
-                    return <Follow key={i} user={follower} />
+                    return <FollowModal key={i} user={follower} />
                   })
                 ) : (
                   <>No Follower</>

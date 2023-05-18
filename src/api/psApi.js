@@ -103,7 +103,7 @@ const psApi = {
 
   deleteComment: (id, token) => {
     const url = 'delete-comment/' + id
-    return axiosClient.post(url, { headers: { Authorization: `Bearer ${token}` } })
+    return axiosClient.delete(url, { headers: { Authorization: `Bearer ${token}` } })
   },
 
   likePost: (data, token) => {

@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom'
 import './timelinepost.scss'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import psApi from '../../api/psApi'
-import Post from './Post'
 import { GlobalContext } from '../../config/GlobalState'
-import UpdatePost from './UpdatePost'
+import setTime from '../../config/setTime'
+import PostModal from '../modal/PostModal'
 
 export default function TimelinePost({ post }) {
   const [isLike, setIsLike] = useState(post.isLike)
   const [comment, setComment] = useState('')
-  const { loggedUser } = useContext(GlobalContext)
-  const token = JSON.parse(localStorage.getItem('token'))
+  const { loggedUser, token } = useContext(GlobalContext)
 
   async function likePost(e, id) {
     e.preventDefault()
@@ -20,6 +19,7 @@ export default function TimelinePost({ post }) {
     }
 
     const like = await psApi.likePost(data, token)
+    console.log(like.message)
     post.totalLikes++
     setIsLike(true)
   }
@@ -32,6 +32,7 @@ export default function TimelinePost({ post }) {
     }
 
     const unlike = await psApi.unlikePost(data, token)
+    console.log(unlike.message)
     post.totalLikes--
     setIsLike(false)
   }
@@ -43,7 +44,7 @@ export default function TimelinePost({ post }) {
       if (confirm(text) === true) {
         const postId = post.id
         const deletePost = await psApi.deletePost(postId, token)
-        alert(deletePost.message)
+        window.location.reload()
       }
     } catch (err) {
       alert(err.response.data.message)
@@ -64,7 +65,9 @@ export default function TimelinePost({ post }) {
     alert(createComment.message)
   }
 
-
+  async function doubleClickToLike(e, id) {
+    !isLike ? likePost(e, id) : unlikePost(e, id)
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -90,10 +93,9 @@ export default function TimelinePost({ post }) {
           </div>
         </Link>
         <div className="timelinePost__content-image">
-          <img src={post.imageUrl} alt="" className="pt-3" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`} />
+          <img src={post.imageUrl} alt="" className="pt-3" onDoubleClick={(e) => doubleClickToLike(e, post.id)}/>
         </div>
         <div className="timelinePost__content-icons">
-
           <div className="timelinePost__content-icons-left">
             {isLike ? <i className="bx bxs-heart" onClick={(e) => unlikePost(e, post.id)} style={{ cursor: 'pointer' }}></i> : <i className="bx bx-heart" onClick={(e) => likePost(e, post.id)} style={{ cursor: 'pointer' }}></i>}
             <i className="bx bx-message-rounded" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}></i>
@@ -110,19 +112,22 @@ export default function TimelinePost({ post }) {
         </div>
         <div className="timelinePost__content-likes">
           <p className="fw-bold m-0 pb-2">
-            {post.totalLikes === 0 ? (
-              <>
-                <span className="fw-normal">Be first to </span>like this
-              </>
-            ) : (
-              <>
-                {post.totalLikes} {post.totalLikes === 1 ? 'like' : 'likes'}
-              </>
-            )}
+            <span>
+              {post.totalLikes === 0 ? (
+                <>
+                  <span className="fw-normal">Be first to </span>like this
+                </>
+              ) : (
+                <>
+                  {post.totalLikes} {post.totalLikes === 1 ? 'like' : 'likes'}
+                </>
+              )}
+            </span>
+            <span className="fw-light"> - {setTime(post.updatedAt)}</span>
           </p>
         </div>
         <div className="timelinePost__content-caption">
-          <span className="fw-bold">{post.user?.username}</span> {post.caption}
+          <Link to={`/u/${post.user?.id}`} className="fw-bold text-decoration-none text-black">{post.user?.username}</Link> {post.caption}
         </div>
         <div className="timelinePost__content-comment">
           <form>
@@ -131,8 +136,7 @@ export default function TimelinePost({ post }) {
           </form>
         </div>
       </div>
-      <Post post={post} />
-      {/* <UpdatePost post={post}/> */}
+      <PostModal post={post} />
     </section>
   )
 }

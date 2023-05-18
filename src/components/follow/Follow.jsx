@@ -3,37 +3,21 @@ import { GlobalContext } from '../../config/GlobalState'
 import { Link } from 'react-router-dom'
 import psApi from '../../api/psApi'
 import './follow.scss'
+import getLoggedUser from '../../config/getLoggedUser'
 
 export default function Follow({ user }) {
-  const token = JSON.parse(localStorage.getItem('token'))
-  const { loggedUser } = useContext(GlobalContext)
+  const { loggedUser, token } = useContext(GlobalContext)
   const [isFollow, setIsFollow] = useState(loggedUser.followingId.includes(user.id))
-
-  async function getLoggedUser() {
-    // * API Get Logged User
-    const loggedUser = await psApi.getLoggedUser(token)
-
-    // * API Get Followers and Following by User ID
-    const followingByUserId = await psApi.getFollowingByUserId(loggedUser.data.id, token, { params: { size: 10, page: 1 } })
-    const followersByUserId = await psApi.getFollowersByUserId(loggedUser.data.id, token, { params: { size: 10, page: 1 } })
-
-    loggedUser.data.following = followingByUserId.data.users
-    loggedUser.data.followers = followersByUserId.data.users
-    loggedUser.data.followingId = followingByUserId.data.users.map((user) => user.id)
-
-    localStorage.setItem('loggedUser', JSON.stringify(loggedUser.data))
-  }
 
   async function followUser(e) {
     e.preventDefault()
-
     const data = {
       userIdFollow: user.id,
     }
     const responseFollow = await psApi.followUser(data, token)
     console.log(responseFollow)
 
-    getLoggedUser()
+    getLoggedUser(token)
     setIsFollow(true)
   }
 
@@ -43,13 +27,23 @@ export default function Follow({ user }) {
     const responseUnfollow = await psApi.unfollowUser(user.id, token)
     console.log(responseUnfollow)
 
-    getLoggedUser()
+    getLoggedUser(token)
     setIsFollow(false)
   }
+
+  function dismissModal() {
+    const truck_modal = document.querySelector('#staticBackdrop')
+    const modal = new bootstrap.Modal(truck_modal, {
+      backdrop: 'static',
+    })
+
+    modal.hide()
+  }
+
   return (
     <section id="follows" className="follows">
       <div className="follow">
-        <Link to={`/u/${user.id}`} className="text-decoration-none">
+        <Link to={`/u/${user.id}`} className="text-decoration-none" onClick={dismissModal}>
           <div>
             <img src={user.profilePictureUrl} alt="" />
             <span>{user.username}</span>

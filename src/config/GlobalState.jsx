@@ -1,19 +1,20 @@
 import { createContext, useEffect, useState } from 'react'
+import getLoggedUser from './getLoggedUser'
 
 export const GlobalContext = createContext()
 
 export function GlobalProvider({ children }) {
   const [isLogin, setIsLogin] = useState(false)
-  const [loggedUser, setLoggedUser] = useState([])
+  const [loggedUser, setLoggedUser] = useState(JSON.parse(localStorage.getItem('loggedUser')))
   const [theme, setTheme] = useState('dark')
+  const token = JSON.parse(localStorage.getItem('token'))
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setLoggedUser(JSON.parse(localStorage.getItem('loggedUser')))
+    if (token) {
       setIsLogin(true)
     }
   }, [])
 
-  const GlobalState = { isLogin, setIsLogin, loggedUser, setLoggedUser, theme, setTheme }
+  const GlobalState = { isLogin, setIsLogin, loggedUser, setLoggedUser, theme, setTheme, token }
   return <GlobalContext.Provider value={GlobalState}>{children}</GlobalContext.Provider>
 }

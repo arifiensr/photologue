@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom'
 import psApi from '../../api/psApi'
 
 export default function Sidebar() {
-  const { loggedUser, setIsLogin } = useContext(GlobalContext)
+  const { loggedUser, token } = useContext(GlobalContext)
   const [following, setFollowing] = useState([])
-  const token = JSON.parse(localStorage.getItem('token'))
 
   useEffect(() => {
     async function getFollowing() {

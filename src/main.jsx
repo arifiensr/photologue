@@ -6,12 +6,12 @@ import { GlobalProvider } from './config/GlobalState'
 import ScrollToTop from './config/ScrollToTop'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <GlobalProvider>
       <BrowserRouter>
         <ScrollToTop />
         <App />
       </BrowserRouter>
     </GlobalProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 )

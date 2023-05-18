@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './dashboard.scss'
 import psApi from '../../api/psApi'
 import Sidebar from '../sidebar/Sidebar'
 import TimelinePost from '../post/TimelinePost'
+import { GlobalContext } from '../../config/GlobalState'
 
 export default function Dashboard() {
   const [explorePost, setExplorerPost] = useState([])
   const [followingPost, setFollowingPost] = useState([])
-  const token = JSON.parse(localStorage.getItem('token'))
+  const { token } = useContext(GlobalContext)
 
-  const database = ['a54c59e7-a1b6-4ac4-ae7b-9885a98ed869']
+  // ! Blocked User
+  const blockedUser = ['a54c59e7-a1b6-4ac4-ae7b-9885a98ed869', '5b7a6783-2071-4e9f-9b8e-8e7fc4a981d4']
 
   useEffect(() => {
     async function getExplorePost() {
       const explorePost = await psApi.getExplorePost(token, { params: { size: 20, page: 1 } })
-      const filteredExplorePost = explorePost.data.posts.filter((post) => !database.includes(post.userId))
-      // console.log(filteredExplorePost)
+      const filteredExplorePost = explorePost.data.posts.filter((post) => !blockedUser.includes(post.userId))
       setExplorerPost(filteredExplorePost)
     }
     getExplorePost()

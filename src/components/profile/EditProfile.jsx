@@ -2,6 +2,7 @@ import { useContext, useRef } from 'react'
 import './editprofile.scss'
 import { GlobalContext } from '../../config/GlobalState'
 import psApi from '../../api/psApi'
+import getLoggedUser from '../../config/getLoggedUser'
 
 export default function EditProfile() {
   const token = JSON.parse(localStorage.getItem('token'))
@@ -31,11 +32,10 @@ export default function EditProfile() {
       }
 
       const updateUserProfile = await psApi.updateUserProfile(data, token)
-
+      
       // * Update User Data
-      const loggedUser = await psApi.getLoggedUser(token)
-      localStorage.setItem('loggedUser', JSON.stringify(loggedUser.data))
-      setLoggedUser(loggedUser.data)
+      const loggedUser = await getLoggedUser(token)
+      setLoggedUser(loggedUser)
       alert('Edit Profile Success')
     } catch (err) {
       alert(err.response.data.message)

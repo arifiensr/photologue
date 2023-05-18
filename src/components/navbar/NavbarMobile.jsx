@@ -39,6 +39,9 @@ export default function NavbarMobile() {
           </div>
         </div>
       </div>
+      <div className='navbar-mobile__hidden-navbar'>
+        
+      </div>
     </section>
   )
 }
