@@ -48,7 +48,7 @@ export default function Dashboard() {
   }, [size])
 
   return (
-    <section id="dashboard" className="dashboard">
+    <section id="dashboard" className="dashboard mb-sm-0">
       <div className="container">
         <div className="row">
           <div className="col-12 p-0 col-xl-8">

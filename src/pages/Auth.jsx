@@ -29,20 +29,24 @@ export default function Auth() {
     })
   }, [])
   return (
-      <section id="auth" className="auth min-vh-100 d-flex flex-column justify-content-center align-items-center">
-        <div className="container">
-          <div className="row justify-content-center align-items-center">
-            <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 auth__form rounded shadow">
-              <div className="auth__form-login" id="auth__form-login">
-                <Login />
-              </div>
-              <div className="auth__form-signup overflow-auto" id="auth__form-signup">
-                <SignUp />
-              </div>
+    <section id="auth" className="auth min-vh-100 d-flex flex-column justify-content-center align-items-center">
+      <div className="container">
+        <div className="row justify-content-center align-items-center">
+          <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 auth__form rounded shadow">
+            <div className="auth__form-login" id="auth__form-login">
+              <Login />
+            </div>
+            <div className="auth__form-signup overflow-auto" id="auth__form-signup">
+              <SignUp />
             </div>
           </div>
         </div>
-        <Footer />
-      </section>
+      </div>
+      <Footer />
+      <div className="auth__sample-user d-none d-sm-block">
+        <p className='fw-bold m-0'>You can use this account.</p>
+        <span>Email: chrispratt@gmail.com<br/>Password: pass123</span>
+      </div>
+    </section>
   )
 }

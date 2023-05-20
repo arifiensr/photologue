@@ -34,4 +34,10 @@
       }
     }
   }
+
+  .tooltip-notification-mobile {
+    color: $secondary;
+    background-color: rgba($primary, 1);
+    z-index: 9999;
+  }
 }

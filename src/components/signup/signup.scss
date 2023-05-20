@@ -1,9 +1,9 @@
 @use '../../scss/variables' as *;
 
 .signup {
+  margin-bottom: 6rem;
   &__wrap {
     padding: 1rem;
-    margin-bottom: 5rem;
     &-title {
       img {
         width: 8rem;

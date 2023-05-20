@@ -5,6 +5,7 @@ import './navbar.scss'
 import { useContext, useRef, useState } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
 import { HashLink } from 'react-router-hash-link'
+import { Tooltip } from 'react-tooltip'
 
 export default function Navbar() {
   const { loggedUser, setIsLogin } = useContext(GlobalContext)
@@ -46,7 +47,7 @@ export default function Navbar() {
                   </HashLink>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-                  <a href="#" type="button" className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                  <a href="#" type="button" className="nav-link text-primary d-flex align-items-center" aria-current="page" data-tooltip-id="tooltip-notification" data-tooltip-content="Coming Soon!">
                     <i className="bx bx-notification"></i>
                     <span className="ms-2 d-none d-xl-inline">Notification</span>
                   </a>
@@ -79,6 +80,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      <Tooltip id='tooltip-notification' place='top' className='tooltip-notification' openOnClick/>
     </section>
   )
 }

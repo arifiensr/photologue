@@ -1,6 +1,7 @@
 @use '../../scss/variables' as *;
 
 .dashboard {
+  margin-bottom: 4rem;
   &__main {
     border-right: 1px solid rgba($primary, 0.2);
 

@@ -28,7 +28,7 @@ export default function Login() {
     }
   }
   return (
-    <section id="login" className="login">
+    <section id="login" className="login d-flex flex-column justify-content-start align-items-center h-100">
       <div className="login__wrap">
         <div className="login__wrap-title d-flex justify-content-center">
           <img src={logoPhotologue} alt="" />
@@ -67,6 +67,14 @@ export default function Login() {
             </p>
           </div>
         </form>
+      </div>
+      <div className="login__sample-user d-block d-sm-none">
+        <p className="fw-bold m-0">You can use this account.</p>
+        <span>
+          Email: chrispratt@gmail.com
+          <br />
+          Password: pass123
+        </span>
       </div>
     </section>
   )

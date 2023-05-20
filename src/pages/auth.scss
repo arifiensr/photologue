@@ -2,8 +2,9 @@
 
 .auth {
   background-color: $secondary;
+  position: relative;
 
-  .auth__mockup {
+  &__mockup {
     height: 45rem;
     background-image: url('../assets/images/landingpage/mockup.png');
     background-size: contain;
@@ -12,20 +13,20 @@
     // border: 1px solid black;
   }
 
-  .auth__form {
+  &__form {
     position: relative;
     height: 70vh;
     border: 1px solid $primary;
     overflow: hidden;
 
-    .auth__form-login {
+    &-login {
       height: 100%;
       position: absolute;
       left: 0%;
       right: 0%;
       transition: all 0.5s;
     }
-    .auth__form-signup {
+    &-signup {
       height: 100%;
       position: absolute;
       left: 100%;
@@ -38,5 +39,15 @@
       min-height: 100vh;
       padding-top: 2rem;
     }
+  }
+
+  &__sample-user {
+    padding: 0.5rem;
+    background-color: rgba($primary, $alpha: 0.8);
+    color: $secondary;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 8%;
+    right: 1%;
   }
 }

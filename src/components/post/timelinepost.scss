@@ -111,4 +111,10 @@
     opacity: 1;
     filter: blur(0);
   }
+
+  .tooltip-share {
+    color: $secondary;
+    background-color: rgba($primary, 1);
+    z-index: 9999;
+  }
 }

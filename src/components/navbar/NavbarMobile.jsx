@@ -5,6 +5,7 @@ import './navbarmobile.scss'
 import { useContext } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
 import { HashLink } from 'react-router-hash-link'
+import { Tooltip } from 'react-tooltip'
 
 export default function NavbarMobile() {
   const { loggedUser, setIsLogin } = useContext(GlobalContext)
@@ -63,7 +64,7 @@ export default function NavbarMobile() {
               </HashLink>
             </li>
             <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-              <a href="#" type="button" className="nav-link text-primary d-flex align-items-center" aria-current="page">
+              <a href="#" type="button" className="nav-link text-primary d-flex align-items-center" aria-current="page" data-tooltip-id="tooltip-notification-mobile" data-tooltip-content="Coming Soon!">
                 <i className="bx bx-notification"></i>
                 <span className="ms-2 d-inline">Notification</span>
               </a>
@@ -96,6 +97,7 @@ export default function NavbarMobile() {
           </ul>
         </div>
       </div>
+      <Tooltip id='tooltip-notification-mobile' place='right' className='tooltip-notification-mobile' openOnClick/>
     </section>
   )
 }

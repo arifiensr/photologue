@@ -60,7 +60,7 @@ export default function EditProfile() {
   }
 
   return (
-    <section id="editprofile" className="editprofile min-vh-100">
+    <section id="editprofile" className="editprofile min-vh-100 mb-5 mb-sm-0">
       <div className="editprofile__wrap">
         <div className="editprofile__wrap-title d-flex flex-column justify-content-center align-items-center">
           <p className="text-primary fw-bold fs-2 m-0">Edit Profile</p>
@@ -115,7 +115,7 @@ export default function EditProfile() {
             <input ref={loggedWebsiteRef} defaultValue={loggedUser.website} type="text" autoComplete="new-password" required />
             <label>Website</label>
           </div>
-          <button type="submit" className="btn btn-primary w-100 p-2 mt-3" onClick={(e) => editProfile(e)}>
+          <button type="submit" className="btn btn-primary w-100 p-2" onClick={(e) => editProfile(e)}>
             Submit
           </button>
         </form>

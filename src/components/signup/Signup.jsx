@@ -56,7 +56,7 @@ export default function Signup() {
 
   return (
     <>
-      <section id="signup" className="signup">
+      <section id="signup" className="signup mb-sm-0">
         <div className="signup__wrap">
           <div className="signup__wrap-title d-flex flex-column justify-content-center align-items-center">
             <p className="text-primary fw-bold fs-2 m-0">Sign Up</p>

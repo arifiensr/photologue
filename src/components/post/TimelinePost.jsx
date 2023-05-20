@@ -5,6 +5,7 @@ import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
 import setTime from '../../config/setTime'
 import PostModal from '../modal/PostModal'
+import { Tooltip } from 'react-tooltip'
 
 export default function TimelinePost({ post }) {
   const [isLike, setIsLike] = useState(post.isLike)
@@ -108,7 +109,7 @@ export default function TimelinePost({ post }) {
           <div className="timelinePost__content-icons-left">
             {isLike ? <i className="bx bxs-heart" onClick={(e) => unlikePost(e, post.id)} style={{ cursor: 'pointer' }}></i> : <i className="bx bx-heart" onClick={(e) => likePost(e, post.id)} style={{ cursor: 'pointer' }}></i>}
             <i className="bx bx-message-rounded" data-bs-toggle="modal" data-bs-target={`#postModal${post.id}`}></i>
-            <i className="bx bx-share-alt"></i>
+            <i className="bx bx-share-alt" data-tooltip-id="tooltip-share" data-tooltip-content="Coming Soon!"></i>
           </div>
           <div className="timelinePost__content-icons-right">
             {post.user?.id === loggedUser.id ? (
@@ -149,6 +150,7 @@ export default function TimelinePost({ post }) {
         </div>
       </div>
       <PostModal post={post} />
+      <Tooltip id='tooltip-share' place='right' className='tooltip-share' openOnClick/>
     </section>
   )
 }
