@@ -31,12 +31,12 @@ export default function Signup() {
     const tempToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiJhNTRjNTllNy1hMWI2LTRhYzQtYWU3Yi05ODg1YTk4ZWQ4NjkiLCJyb2xlIjoiZ2VuZXJhbCIsImlhdCI6MTY4MTAxMzEzN30.AxhIjhRXMoFoxldGOqwLur6jNBC-mx9-Ig18RWfYkLM'
 
     let imageUrl = { url: defaultImageUrl }
-      if (images) {
-        const formData = new FormData()
-        formData.append('image', images)
+    if (images) {
+      const formData = new FormData()
+      formData.append('image', images)
 
-        imageUrl = await psApi.uploadImage(formData, tempToken)
-      }
+      imageUrl = await psApi.uploadImage(formData, tempToken)
+    }
 
     const data = {
       name: registerNameRef.current.value,
@@ -52,6 +52,13 @@ export default function Signup() {
 
     const register = await psApi.registerUser(data)
     alert(register.message)
+
+    const formSignup = document.getElementById('auth__form-signup')
+    const formLogin = document.getElementById('auth__form-login')
+    formLogin.style.left = '0%'
+    formLogin.style.right = '0%'
+    formSignup.style.left = '100%'
+    formSignup.style.right = '-100%'
   }
 
   return (
@@ -61,12 +68,12 @@ export default function Signup() {
           <div className="signup__wrap-title d-flex flex-column justify-content-center align-items-center">
             <p className="text-primary fw-bold fs-2 m-0">Sign Up</p>
             <img src={imagesPreview} alt="" />
-          <div className="input-upload">
-            <label htmlFor="chooseImage" className="form-label">
-              <i className="bx bxs-cloud-upload"></i> Choose Image
-            </label>
-            <input id="chooseImage" type="file" accept="image/*" onChange={(e) => handleImages(e)} className="form-control" required />
-          </div>
+            <div className="input-upload">
+              <label htmlFor="chooseImage" className="form-label">
+                <i className="bx bxs-cloud-upload"></i> Choose Image
+              </label>
+              <input id="chooseImage" type="file" accept="image/*" onChange={(e) => handleImages(e)} className="form-control" required />
+            </div>
           </div>
           <form className="signup__wrap-form">
             <div className="input-box">
