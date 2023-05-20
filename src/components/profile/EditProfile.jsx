@@ -3,6 +3,7 @@ import './editprofile.scss'
 import { GlobalContext } from '../../config/GlobalState'
 import psApi from '../../api/psApi'
 import getLoggedUser from '../../config/getLoggedUser'
+import { compressAccurately } from 'image-conversion'
 
 export default function EditProfile() {
   const token = JSON.parse(localStorage.getItem('token'))
@@ -17,13 +18,11 @@ export default function EditProfile() {
   const loggedBioRef = useRef(loggedUser ? loggedUser.bio : null)
   const loggedWebsiteRef = useRef(loggedUser ? loggedUser.website : null)
 
-  function handleImages(e) {
-    if (e.target.files[0].size < 1024 * 1024) {
-      setImages(e.target.files[0])
-      setImagesPreview(URL.createObjectURL(e.target.files[0]))
-    } else {
-      alert('File is to big! Max size is 1MB.')
-    }
+  async function handleImages(e) {
+    const compressedImageBlob = await compressAccurately(e.target.files[0], 900)
+    const compressedImage = new File([compressedImageBlob], 'photologue-compressed-image', { type: 'image/jpeg' })
+    setImages(compressedImage)
+    setImagesPreview(URL.createObjectURL(compressedImage))
   }
 
   async function editProfile(e) {

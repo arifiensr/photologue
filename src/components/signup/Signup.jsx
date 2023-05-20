@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import psApi from '../../api/psApi'
+import { compressAccurately } from 'image-conversion'
 import './signup.scss'
 
 export default function Signup() {
@@ -16,13 +17,12 @@ export default function Signup() {
   const registerBioRef = useRef()
   const registerWebsiteRef = useRef()
 
-  function handleImages(e) {
-    if (e.target.files[0].size < 1024 * 1024) {
-      setImages(e.target.files[0])
-      setImagesPreview(URL.createObjectURL(e.target.files[0]))
-    } else {
-      alert('File is to big! Max size is 1MB.')
-    }
+  async function handleImages(e) {
+      const compressedImageBlob = await compressAccurately(e.target.files[0], 900)
+      const compressedImage = new File([compressedImageBlob], 'photologue-compressed-image', { type: 'image/jpeg' })
+      setImages(compressedImage)
+      setImagesPreview(URL.createObjectURL(compressedImage))
+    
   }
 
   async function handleRegister(e) {

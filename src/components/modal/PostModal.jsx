@@ -4,6 +4,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import psApi from '../../api/psApi'
 import { GlobalContext } from '../../config/GlobalState'
 import setTime from '../../config/setTime'
+import { compressAccurately } from 'image-conversion'
 
 export default function PostModal({ post }) {
   const [isLike, setIsLike] = useState(post.isLike)
@@ -16,16 +17,11 @@ export default function PostModal({ post }) {
   const createPostCaptionRef = useRef()
   const updatePostCaptionRef = useRef(post.caption)
 
-  function handleImages(e) {
-    if (e.target.files[0].size < 1024 * 1024) {
-      setImages(e.target.files[0])
-      setImagesPreview(URL.createObjectURL(e.target.files[0]))
-      console.log(e.target.files[0])
-    } else {
-      setImages()
-      setImagesPreview()
-      alert('File is to big! Max size is 1MB.')
-    }
+  async function handleImages(e) {
+    const compressedImageBlob = await compressAccurately(e.target.files[0], 900)
+    const compressedImage = new File([compressedImageBlob], 'photologue-compressed-image', { type: 'image/jpeg' })
+    setImages(compressedImage)
+    setImagesPreview(URL.createObjectURL(compressedImage))
   }
 
   async function updatePost(e) {
@@ -279,7 +275,7 @@ export default function PostModal({ post }) {
                   <label>Caption</label>
                 </div>
               </form>
-              <div className="mb-3 image-preview">
+              <div className="mb-3 image-preview d-flex justify-content-center">
                 {images && (
                   <>
                     <img src={imagesPreview} alt="" />
