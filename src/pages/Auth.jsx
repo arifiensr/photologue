@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import Login from '../components/login/Login'
 import SignUp from '../components/signup/Signup'
-import mockupImage from '../assets/images/landingpage/mockup.png'
 import './auth.scss'
 import Footer from '../components/footer/Footer'
 
