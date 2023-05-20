@@ -144,16 +144,17 @@ export default function PostModal({ post }) {
   }
 
   async function doubleClickToLike(e, id) {
-    !isLike ? likePost(e, id) : unlikePost(e, id)
-  }
-
-  function dismissModal() {
-    const truck_modal = document.querySelector('#staticBackdrop')
-    const modal = new bootstrap.Modal(truck_modal, {
-      backdrop: 'static',
-    })
-
-    modal.hide()
+    const heartIcon = document.querySelector(`.heart-icon-${id}`)
+    setTimeout(() => {
+      heartIcon.style.scale = '1.5'
+    }, 0)
+    setTimeout(() => {
+      heartIcon.style.scale = '1'
+    }, 200)
+    setTimeout(() => {
+      heartIcon.style.scale = '0'
+    }, 600)
+    likePost(e, id)
   }
 
   useEffect(() => {
@@ -170,14 +171,15 @@ export default function PostModal({ post }) {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               <section id={`post${postModal.id}`} className="post">
                 <div className="h-100 border-bottom post__content">
-                  <Link to={`/u/${postModal.user?.id}`} className="text-decoration-none" onClick={dismissModal}>
-                    <div className="post__content-header d-inline">
+                  <Link to={`/u/${postModal.user?.id}`} className="text-decoration-none">
+                    <div className="post__content-header d-inline" data-bs-dismiss="modal" aria-label="Close">
                       <img src={postModal.user?.profilePictureUrl} alt="" />
                       <span className="fw-bold ps-2">{postModal.user?.username}</span>
                     </div>
                   </Link>
                   <div className="post__content-image">
                     <img src={postModal.imageUrl} alt="" className="pt-3" onDoubleClick={(e) => doubleClickToLike(e, postModal.id)} />
+                    <i className={`bx bxs-heart heart-icon-${post.id}`}></i>
                   </div>
                   <div className="post__content-icons">
                     <div className="post__content-icons-left">
@@ -211,9 +213,12 @@ export default function PostModal({ post }) {
                     </p>
                   </div>
                   <div className="post__content-caption">
-                    <Link to={`/u/${postModal.user?.id}`} className="fw-bold text-decoration-none text-black" onClick={dismissModal}>
-                      <img src={postModal.user?.profilePictureUrl} alt="" />
-                      <span> {postModal.user?.username}</span>
+                    <Link to={`/u/${postModal.user?.id}`} className="fw-bold text-decoration-none text-black">
+                      <img src={postModal.user?.profilePictureUrl} alt="" data-bs-dismiss="modal" aria-label="Close" />
+                      <span data-bs-dismiss="modal" aria-label="Close">
+                        {' '}
+                        {postModal.user?.username}
+                      </span>
                     </Link>
                     <span> {postModal.caption}</span>
                   </div>
@@ -223,9 +228,12 @@ export default function PostModal({ post }) {
                         return (
                           <div key={i} className="d-flex justify-content-between">
                             <span>
-                              <Link to={`/u/${comment.user?.id}`} className="fw-bold text-decoration-none text-black" onClick={dismissModal}>
-                                <img src={comment.user?.profilePictureUrl} alt="" />
-                                <span> {comment.user.username}</span>
+                              <Link to={`/u/${comment.user?.id}`} className="fw-bold text-decoration-none text-black">
+                                <img src={comment.user?.profilePictureUrl} alt="" data-bs-dismiss="modal" aria-label="Close" />
+                                <span data-bs-dismiss="modal" aria-label="Close">
+                                  {' '}
+                                  {comment.user.username}
+                                </span>
                               </Link>{' '}
                               {comment.comment}
                             </span>

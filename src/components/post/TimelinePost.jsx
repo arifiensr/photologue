@@ -66,7 +66,6 @@ export default function TimelinePost({ post }) {
   }
 
   async function doubleClickToLike(e, id) {
-    console.log(e)
     const heartIcon = document.querySelector(`.heart-icon-${id}`)
     setTimeout(() => {
       heartIcon.style.scale = '1.5'
