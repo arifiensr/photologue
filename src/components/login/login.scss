@@ -3,6 +3,7 @@
 .login {
   &__wrap {
     padding: 1rem;
+    padding-bottom: 0;
 
     &-title {
       img {
@@ -101,7 +102,6 @@
   }
 
   &__sample-user {
-    margin-top: 10rem;
     justify-self: end;
     width: 15rem;
     padding: 0.5rem;
