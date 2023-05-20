@@ -66,7 +66,18 @@ export default function TimelinePost({ post }) {
   }
 
   async function doubleClickToLike(e, id) {
-    !isLike ? likePost(e, id) : unlikePost(e, id)
+    console.log(e)
+    const heartIcon = document.querySelector(`.heart-icon-${id}`)
+    setTimeout(() => {
+      heartIcon.style.scale = '1.5'
+    }, 0)
+    setTimeout(() => {
+      heartIcon.style.scale = '1'
+    }, 200)
+    setTimeout(() => {
+      heartIcon.style.scale = '0'
+    }, 600)
+    likePost(e, id)
   }
 
   useEffect(() => {
@@ -93,7 +104,8 @@ export default function TimelinePost({ post }) {
           </div>
         </Link>
         <div className="timelinePost__content-image">
-          <img src={post.imageUrl} alt="" className="pt-3" onDoubleClick={(e) => doubleClickToLike(e, post.id)}/>
+          <img src={post.imageUrl} alt="" className="pt-3" onDoubleClick={(e) => doubleClickToLike(e, post.id)} />
+          <i className={`bx bxs-heart heart-icon-${post.id}`}></i>
         </div>
         <div className="timelinePost__content-icons">
           <div className="timelinePost__content-icons-left">
@@ -127,7 +139,10 @@ export default function TimelinePost({ post }) {
           </p>
         </div>
         <div className="timelinePost__content-caption">
-          <Link to={`/u/${post.user?.id}`} className="fw-bold text-decoration-none text-black">{post.user?.username}</Link> {post.caption}
+          <Link to={`/u/${post.user?.id}`} className="fw-bold text-decoration-none text-black">
+            {post.user?.username}
+          </Link>{' '}
+          {post.caption}
         </div>
         <div className="timelinePost__content-comment">
           <form>

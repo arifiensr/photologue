@@ -31,20 +31,11 @@ export default function Follow({ user }) {
     setIsFollow(false)
   }
 
-  function dismissModal() {
-    const truck_modal = document.querySelector('#staticBackdrop')
-    const modal = new bootstrap.Modal(truck_modal, {
-      backdrop: 'static',
-    })
-
-    modal.hide()
-  }
-
   return (
     <section id="follows" className="follows">
       <div className="follow">
-        <Link to={`/u/${user.id}`} className="text-decoration-none" onClick={dismissModal}>
-          <div>
+        <Link to={`/u/${user.id}`} className="text-decoration-none">
+          <div data-bs-dismiss="modal" aria-label="Close">
             <img src={user.profilePictureUrl} alt="" />
             <span>{user.username}</span>
           </div>
@@ -64,8 +55,8 @@ export default function Follow({ user }) {
             </>
           )
         ) : (
-          <Link to={`/u/${loggedUser.id}`} onClick={dismissModal}>
-            <button className="ms-4 button-solid">My Profile</button>
+          <Link to={`/u/${loggedUser.id}`}>
+            <button className="ms-4 button-solid" data-bs-dismiss="modal" aria-label="Close">My Profile</button>
           </Link>
         )}
       </div>

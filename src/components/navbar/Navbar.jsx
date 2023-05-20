@@ -4,6 +4,7 @@ import psApi from '../../api/psApi'
 import './navbar.scss'
 import { useContext, useRef, useState } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
+import { HashLink } from 'react-router-hash-link'
 
 export default function Navbar() {
   const { loggedUser, setIsLogin } = useContext(GlobalContext)
@@ -39,10 +40,10 @@ export default function Navbar() {
               <hr className="text-primary d-none d-xl-block" />
               <ul className="navbar__wrap_content-list nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-                  <Link to={'/'} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                  <HashLink to={'/#'} className="nav-link text-primary d-flex align-items-center" aria-current="page">
                     <i className="bx bx-home"></i>
                     <span className="ms-2 d-none d-xl-inline">Home</span>
-                  </Link>
+                  </HashLink>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <a href="#" type="button" className="nav-link text-primary d-flex align-items-center" aria-current="page">
@@ -51,16 +52,16 @@ export default function Navbar() {
                   </a>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-                  <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                  <HashLink to={`/u/${loggedUser.id}#`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
                     <img src={loggedUser.profilePictureUrl} alt="" />
                     <span className="ms-2 d-none d-xl-inline">Profile</span>
-                  </Link>
+                  </HashLink>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-                  <Link to={`/editprofile`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                  <HashLink to={`/editprofile#`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
                     <i className="bx bx-cog"></i>
                     <span className="ms-2 d-none d-xl-inline">Edit Profile</span>
-                  </Link>
+                  </HashLink>
                 </li>
                 <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
                   <div className="nav-link text-primary d-flex align-items-center" aria-current="page" data-bs-toggle="modal" data-bs-target="#createPostModal">

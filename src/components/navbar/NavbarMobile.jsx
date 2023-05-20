@@ -4,6 +4,7 @@ import psApi from '../../api/psApi'
 import './navbarmobile.scss'
 import { useContext } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
+import { HashLink } from 'react-router-hash-link'
 
 export default function NavbarMobile() {
   const { loggedUser, setIsLogin } = useContext(GlobalContext)
@@ -30,12 +31,12 @@ export default function NavbarMobile() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-auto navbar-mobile__content w-100 d-flex justify-content-around align-items-center">
-            <Link to={`/`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+            <HashLink to={`/#`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
               <i className="bx bx-home"></i>
-            </Link>{' '}
-            <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+            </HashLink>{' '}
+            <HashLink to={`/u/${loggedUser.id}#`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
               <img src={loggedUser.profilePictureUrl} alt="" />
-            </Link>
+            </HashLink>
             <i className="bx bx-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarMobile"></i>
           </div>
         </div>
@@ -54,10 +55,12 @@ export default function NavbarMobile() {
           <hr className="text-primary d-block" />
           <ul className="navbar__wrap_content-list nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
             <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-              <Link to={'/'} className="nav-link text-primary d-flex align-items-center" aria-current="page">
-                <i className="bx bx-home"></i>
-                <span className="ms-2 d-inline">Home</span>
-              </Link>
+              <HashLink to={'/#'} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                <i className="bx bx-home" data-bs-dismiss="offcanvas" aria-label="Close"></i>
+                <span className="ms-2 d-inline" data-bs-dismiss="offcanvas" aria-label="Close">
+                  Home
+                </span>
+              </HashLink>
             </li>
             <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
               <a href="#" type="button" className="nav-link text-primary d-flex align-items-center" aria-current="page">
@@ -66,16 +69,18 @@ export default function NavbarMobile() {
               </a>
             </li>
             <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-              <Link to={`/u/${loggedUser.id}`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
-                <img src={loggedUser.profilePictureUrl} alt="" />
-                <span className="ms-2 d-inline">Profile</span>
-              </Link>
+              <HashLink to={`/u/${loggedUser.id}#`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                <img src={loggedUser.profilePictureUrl} alt="" data-bs-dismiss="offcanvas" aria-label="Close" />
+                <span className="ms-2 d-inline" data-bs-dismiss="offcanvas" aria-label="Close">
+                  Profile
+                </span>
+              </HashLink>
             </li>
             <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
-              <Link to={`/editprofile`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
-                <i className="bx bx-cog"></i>
-                <span className="ms-2 d-inline">Edit Profile</span>
-              </Link>
+              <HashLink to={`/editprofile#`} className="nav-link text-primary d-flex align-items-center" aria-current="page">
+                <i className="bx bx-cog" data-bs-dismiss="offcanvas" aria-label="Close"></i>
+                <span className="ms-2 d-inline" data-bs-dismiss="offcanvas" aria-label="Close">Edit Profile</span>
+              </HashLink>
             </li>
             <li className="nav-item my-sm-2 my-3 mx-3 fs-6">
               <div className="nav-link text-primary d-flex align-items-center" aria-current="page" data-bs-toggle="modal" data-bs-target="#createPostModal">
