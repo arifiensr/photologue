@@ -84,8 +84,6 @@ export default function TimelinePost({ post }) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('timelinePost__show')
-        } else {
-          // entry.target.classList.remove('timelinePost__show')
         }
       })
     })

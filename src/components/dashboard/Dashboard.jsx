@@ -8,10 +8,10 @@ import { GlobalContext } from '../../config/GlobalState'
 export default function Dashboard() {
   const [explorePost, setExplorerPost] = useState([])
   const [followingPost, setFollowingPost] = useState([])
+  const [size, setSize] = useState(5)
   const [loadMore, setLoadMore] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const { token } = useContext(GlobalContext)
-  let size = 10
 
   // ! Blocked User
   const blockedUser = ['a54c59e7-a1b6-4ac4-ae7b-9885a98ed869', '5b7a6783-2071-4e9f-9b8e-8e7fc4a981d4']
@@ -33,17 +33,19 @@ export default function Dashboard() {
   }
 
   async function loadMoreData() {
-    size += 5
-    if (size <= maxFollowingPost) {
-      getFollowingPost(size)
-      setLoadMore(true)
-    } else setLoadMore(false)
+    const followingPostSize = await getFollowingPost(size)
+    let x = size
+    if (size < followingPostSize) {
+      setSize((prev) => (prev += 10))
+      x += 10
+    }
+    if (x >= followingPostSize) setLoadMore(false)
   }
 
   useEffect(() => {
-    getExplorePost(10)
-    var maxFollowingPost = getFollowingPost(10)
-  }, [])
+    getExplorePost(50)
+    getFollowingPost(size)
+  }, [size])
 
   return (
     <section id="dashboard" className="dashboard">
@@ -86,7 +88,7 @@ export default function Dashboard() {
                     </div>
                   </div>
                   {loadMore ? (
-                    <div className="dashboard__main-loadmore d-flex justify-content-center align-items-center">
+                    <div className="dashboard__main-loadmore d-flex justify-content-center align-items-center m-2 text-primary fw-bold" onClick={() => loadMoreData()}>
                       <span>Load more...</span>
                     </div>
                   ) : null}
