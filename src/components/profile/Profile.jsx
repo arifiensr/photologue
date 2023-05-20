@@ -10,26 +10,10 @@ import getLoggedUser from '../../config/getLoggedUser'
 export default function Profile() {
   const { id } = useParams()
   const token = JSON.parse(localStorage.getItem('token'))
-  const { loggedUser, setLoggedUser } = useContext(GlobalContext)
+  const { loggedUser } = useContext(GlobalContext)
   const [isLoading, setIsLoading] = useState(true)
   const [userById, setUserById] = useState([])
   const [isFollow, setIsFollow] = useState(loggedUser.followingId.includes(id))
-
-  // async function getLoggedUser() {
-  //   // * API Get Logged User
-  //   const loggedUser = await psApi.getLoggedUser(token)
-
-  //   // * API Get Followers and Following by User ID
-  //   const followingByUserId = await psApi.getFollowingByUserId(loggedUser.data.id, token, { params: { size: 10, page: 1 } })
-  //   const followersByUserId = await psApi.getFollowersByUserId(loggedUser.data.id, token, { params: { size: 10, page: 1 } })
-
-  //   loggedUser.data.following = followingByUserId.data.users
-  //   loggedUser.data.followers = followersByUserId.data.users
-  //   loggedUser.data.followingId = followingByUserId.data.users.map((user) => user.id)
-
-  //   localStorage.setItem('loggedUser', JSON.stringify(loggedUser.data))
-  //   setLoggedUser(loggedUser.data)
-  // }
 
   async function followUser(e) {
     e.preventDefault()
@@ -57,8 +41,8 @@ export default function Profile() {
   useEffect(() => {
     async function getUserById(id) {
       const userById = await psApi.getUserById(id, token)
-      const followingByUserId = await psApi.getFollowingByUserId(id, token, { params: { size: 10, page: 1 } })
-      const followersByUserId = await psApi.getFollowersByUserId(id, token, { params: { size: 10, page: 1 } })
+      const followingByUserId = await psApi.getFollowingByUserId(id, token, { params: { size: 15, page: 1 } })
+      const followersByUserId = await psApi.getFollowersByUserId(id, token, { params: { size: 15, page: 1 } })
 
       userById.data.following = followingByUserId.data.users
       userById.data.followers = followersByUserId.data.users

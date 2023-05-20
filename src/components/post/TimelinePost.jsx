@@ -77,7 +77,7 @@ export default function TimelinePost({ post }) {
     setTimeout(() => {
       heartIcon.style.scale = '0'
     }, 600)
-    likePost(e, id)
+    if (!isLike) likePost(e, id)
   }
 
   useEffect(() => {
