@@ -9,6 +9,7 @@ export default function Dashboard() {
   const [explorePost, setExplorerPost] = useState([])
   const [followingPost, setFollowingPost] = useState([])
   const [loadMore, setLoadMore] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const { token } = useContext(GlobalContext)
   let size = 10
 
@@ -20,41 +21,28 @@ export default function Dashboard() {
     const filteredExplorePost = explorePost.data.posts.filter((post) => !blockedUser.includes(post.userId))
     setExplorerPost(filteredExplorePost)
     console.log(explorePost)
+    setIsLoading(false)
     return explorePost.data.totalItems
   }
 
   async function getFollowingPost(size) {
     const followingPost = await psApi.getFollowingPost(token, { params: { size: size, page: 1 } })
     setFollowingPost(followingPost.data.posts)
+    setIsLoading(false)
     return followingPost.data.totalItems
   }
 
+  async function loadMoreData() {
+    size += 5
+    if (size <= maxFollowingPost) {
+      getFollowingPost(size)
+      setLoadMore(true)
+    } else setLoadMore(false)
+  }
+
   useEffect(() => {
-    async function loadMoreData() {
-      const maxExplorePost = await getExplorePost(10)
-      const maxFollowingPost = await getFollowingPost(10)
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            size += 10
-            if (size <= maxExplorePost) {
-              getExplorePost(size)
-              setLoadMore(true)
-            } else setLoadMore(false)
-
-            if (size <= maxFollowingPost) {
-              getFollowingPost(size)
-              setLoadMore(true)
-            } else setLoadMore(false)
-            console.log('size:', size);
-          }
-        })
-      })
-      const loadMore = document.querySelectorAll('.dashboard__main-loadmore')
-      loadMore.forEach((el) => observer.observe(el))
-    }
-    loadMoreData()
+    getExplorePost(10)
+    var maxFollowingPost = getFollowingPost(10)
   }, [])
 
   return (
@@ -73,26 +61,38 @@ export default function Dashboard() {
                   </button>
                 </div>
               </nav>
-              <div className="tab-content dashboard__main-post" id="nav-tabContent">
-                <div className="tab-pane fade show active" id="nav-explore" role="tabpanel" aria-labelledby="nav-explore-tab" tabIndex={0}>
-                  {explorePost &&
-                    explorePost.map((post, i) => {
-                      return <TimelinePost key={i} post={post} />
-                    })}
-                </div>
-                <div className="tab-pane fade" id="nav-following" role="tabpanel" aria-labelledby="nav-following-tab" tabIndex={0}>
-                  {followingPost &&
-                    followingPost.map((post, i) => {
-                      return <TimelinePost key={i} post={post} />
-                    })}
-                </div>
-              </div>
+              {isLoading ? (
+                <>
+                  <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-primary m-5" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="tab-content dashboard__main-post" id="nav-tabContent">
+                    <div className="tab-pane fade show active" id="nav-explore" role="tabpanel" aria-labelledby="nav-explore-tab" tabIndex={0}>
+                      {explorePost &&
+                        explorePost.map((post, i) => {
+                          return <TimelinePost key={i} post={post} />
+                        })}
+                    </div>
+                    <div className="tab-pane fade" id="nav-following" role="tabpanel" aria-labelledby="nav-following-tab" tabIndex={0}>
+                      {followingPost &&
+                        followingPost.map((post, i) => {
+                          return <TimelinePost key={i} post={post} />
+                        })}
+                    </div>
+                  </div>
+                  {loadMore ? (
+                    <div className="dashboard__main-loadmore d-flex justify-content-center align-items-center">
+                      <span>Load more...</span>
+                    </div>
+                  ) : null}
+                </>
+              )}
             </div>
-            {loadMore ? (
-              <div className="dashboard__main-loadmore d-flex justify-content-center align-items-center">
-                <span>Load more...</span>
-              </div>
-            ) : null}
           </div>
           <div className="col-4 p-0 d-flex justify-content-start d-none d-xl-flex">
             <Sidebar />

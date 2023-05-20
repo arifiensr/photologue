@@ -1,10 +1,9 @@
 // Theme Colors
-$cream: #F4F0EC;
-$font: #3D664B;
-$orange: #FABE9C;
+$cream: #f4f0ec;
+$font: #3d664b;
+$orange: #fabe9c;
 
-
-$white:    #fff;
+$white: #fff;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
@@ -14,13 +13,13 @@ $gray-600: #6c757d;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
-$black:    #000;
+$black: #000;
 
-$primary: #3D664B;
-$secondary: #F4F0EC;
-$success: #FABE9C;
+$primary: #3d664b;
+$secondary: #f4f0ec;
+$success: #fabe9c;
 
-
+$offcanvas-horizontal-width: 60vw;
 
 // Import Bootstrap
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

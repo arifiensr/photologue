@@ -21,4 +21,17 @@
       margin-right: 9px;
     }
   }
+
+  .offcanvas {
+    .offcanvas-header {
+      .offcanvas-title {
+        img {
+          width: 100%;
+          height: auto;
+          padding-left: 0.7rem;
+          padding-right: 0.7rem;
+        }
+      }
+    }
+  }
 }
