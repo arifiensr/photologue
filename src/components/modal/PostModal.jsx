@@ -18,10 +18,15 @@ export default function PostModal({ post }) {
   const updatePostCaptionRef = useRef(post.caption)
 
   async function handleImages(e) {
-    const compressedImageBlob = await compressAccurately(e.target.files[0], 900)
-    const compressedImage = new File([compressedImageBlob], 'photologue-compressed-image', { type: 'image/jpeg' })
-    setImages(compressedImage)
-    setImagesPreview(URL.createObjectURL(compressedImage))
+    if (e.target.files[0].size > 900 * 900) {
+      const compressedImageBlob = await compressAccurately(e.target.files[0], 900)
+      const compressedImage = new File([compressedImageBlob], 'photologue-compressed-image', { type: 'image/jpeg' })
+      setImages(compressedImage)
+      setImagesPreview(URL.createObjectURL(compressedImage))
+    } else {
+      setImagesPreview(URL.createObjectURL(e.target.files[0]))
+      setImages(e.target.files[0])
+    }
   }
 
   async function updatePost(e) {
@@ -132,8 +137,7 @@ export default function PostModal({ post }) {
   }
 
   async function getPostById(id) {
-    const postId = id
-    const getPostId = await psApi.getPostById(postId, token)
+    const getPostId = await psApi.getPostById(id, token)
     getPostId.data.totalLikes = post.totalLikes
     getPostId.data.isLike = post.isLike
     setPostModal(getPostId.data)
@@ -159,6 +163,7 @@ export default function PostModal({ post }) {
 
   return (
     <>
+      {console.log(imagesPreview)}
       {/* Post Modal */}
       <div className="modal fade postModal" id={`postModal${postModal.id}`} tabIndex={-1} aria-labelledby="postModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
@@ -175,7 +180,7 @@ export default function PostModal({ post }) {
                   </Link>
                   <div className="post__content-image">
                     <img src={postModal.imageUrl} alt="" className="pt-3" onDoubleClick={(e) => doubleClickToLike(e, postModal.id)} />
-                    <i className={`bx bxs-heart heart-icon-${post.id}`}></i>
+                    <i className={`bx bxs-heart heart-icon-${postModal.id}`}></i>
                   </div>
                   <div className="post__content-icons">
                     <div className="post__content-icons-left">
@@ -262,10 +267,10 @@ export default function PostModal({ post }) {
             <div className="modal-body">
               <form>
                 <div className="input-upload">
-                  <label htmlFor="chooseImage" className="form-label">
+                  <label htmlFor={`chooseImageCreatePost`} className="form-label">
                     <i className="bx bxs-cloud-upload"></i> Choose Image
                   </label>
-                  <input id="chooseImage" type="file" accept="image/*" onChange={handleImages} className="form-control" required />
+                  <input id={`chooseImageCreatePost`} type="file" accept="image/*" onChange={(e) => handleImages(e)} className="form-control" required />
                 </div>
                 <div className="input-box">
                   <span className="input-box__icon">
@@ -284,7 +289,7 @@ export default function PostModal({ post }) {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={createPost}>
+              <button type="button" className="btn btn-primary" onClick={(e) => createPost(e)}>
                 Submit
               </button>
             </div>
@@ -293,11 +298,11 @@ export default function PostModal({ post }) {
       </div>
 
       {/* Update Post */}
-      <div className="modal fade updatePost" id={`updatePostModal${postModal.id}`} tabIndex={-1} aria-labelledby="updatePostModalLabel" aria-hidden="true">
+      <div className="modal fade updatePost" id={`updatePostModal${postModal.id}`} tabIndex={-1} aria-labelledby={`updatePostModalLabel${postModal.id}`} aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
           <div className="modal-content border-primary">
             <div className="modal-header">
-              <h1 className="modal-title fs-5 text-primary" id="updatePostModalLabel">
+              <h1 className="modal-title fs-5 text-primary" id={`updatePostModalLabel${postModal.id}`}>
                 Update Post
               </h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -305,10 +310,10 @@ export default function PostModal({ post }) {
             <div className="modal-body">
               <form>
                 <div className="input-upload">
-                  <label htmlFor="chooseImage" className="form-label">
+                  <label htmlFor={`chooseImageUpdatePost${postModal.id}`} className="form-label">
                     <i className="bx bxs-cloud-upload"></i> Choose Image
                   </label>
-                  <input id="chooseImage" type="file" accept="image/*" onChange={handleImages} className="form-control" required />
+                  <input id={`chooseImageUpdatePost${postModal.id}`} type="file" accept="image/*" onChange={(e) => handleImages(e)} className="form-control" required />
                 </div>
                 <div className="input-box">
                   <span className="input-box__icon">
@@ -323,7 +328,7 @@ export default function PostModal({ post }) {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={updatePost}>
+              <button type="button" className="btn btn-primary" onClick={(e) => updatePost(e)}>
                 Submit
               </button>
             </div>

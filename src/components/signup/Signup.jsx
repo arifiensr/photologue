@@ -18,11 +18,15 @@ export default function Signup() {
   const registerWebsiteRef = useRef()
 
   async function handleImages(e) {
+    if (e.target.files[0].size > 900 * 900) {
       const compressedImageBlob = await compressAccurately(e.target.files[0], 900)
       const compressedImage = new File([compressedImageBlob], 'photologue-compressed-image', { type: 'image/jpeg' })
       setImages(compressedImage)
       setImagesPreview(URL.createObjectURL(compressedImage))
-    
+    } else {
+      setImagesPreview(URL.createObjectURL(e.target.files[0]))
+      setImages(e.target.files[0])
+    }
   }
 
   async function handleRegister(e) {
