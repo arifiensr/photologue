@@ -163,7 +163,6 @@ export default function PostModal({ post }) {
 
   return (
     <>
-      {console.log(imagesPreview)}
       {/* Post Modal */}
       <div className="modal fade postModal" id={`postModal${postModal.id}`} tabIndex={-1} aria-labelledby="postModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
