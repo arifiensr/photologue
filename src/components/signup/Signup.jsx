@@ -4,7 +4,7 @@ import { compressAccurately } from 'image-conversion'
 import './signup.scss'
 
 export default function Signup() {
-  const defaultImageUrl = 'https://d32ogoqmya1dw8.cloudfront.net/images/serc/empty_user_icon_256.v2.png'
+  const defaultImageUrl = 'https://api-bootcamp.do.dibimbing.id/images/1684675691646-usericon.png'
   const [images, setImages] = useState()
   const [imagesPreview, setImagesPreview] = useState(defaultImageUrl)
 

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logoPhotologue from '../../assets/images/logo/photologue1.png'
 import psApi from '../../api/psApi'
 import './navbarmobile.scss'

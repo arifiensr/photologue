@@ -3,10 +3,8 @@
 .sidebar {
   margin-left: 1rem;
   
-  // border-left: 1px solid rgba($primary, 0.2);
   &__wrap {
     &_content {
-      // background-color: $primary;
       border-radius: 15px;
       &-title {
         transition: all 0.5s;
@@ -30,10 +28,6 @@
             height: 30px;
             object-fit: cover;
             border-radius: 50%;
-          }
-
-          button {
-            
           }
 
         }

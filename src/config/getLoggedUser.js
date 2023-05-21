@@ -8,9 +8,6 @@ export default async function getLoggedUser(token) {
   const followingByUserId = await psApi.getFollowingByUserId(loggedUser.data.id, token, { params: { size: 10, page: 1 } })
   const followersByUserId = await psApi.getFollowersByUserId(loggedUser.data.id, token, { params: { size: 10, page: 1 } })
 
-  console.log(loggedUser)
-  console.log(followingByUserId)
-
   loggedUser.data.following = followingByUserId.data.users
   loggedUser.data.followers = followersByUserId.data.users
   loggedUser.data.followingId = followingByUserId.data.users.map((user) => user.id)

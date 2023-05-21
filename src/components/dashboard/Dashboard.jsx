@@ -20,7 +20,6 @@ export default function Dashboard() {
     const explorePost = await psApi.getExplorePost(token, { params: { size: size, page: 1 } })
     const filteredExplorePost = explorePost.data.posts.filter((post) => !blockedUser.includes(post.userId))
     setExplorerPost(filteredExplorePost)
-    console.log(explorePost)
     setIsLoading(false)
     return explorePost.data.totalItems
   }

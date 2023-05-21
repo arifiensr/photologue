@@ -68,23 +68,16 @@ export default function ApiTest() {
     loggedWebsiteRef.current = loggedUserData.data.website
 
     localStorage.setItem('user', JSON.stringify(loggedUserData.data))
-    // console.log(loggedUserData.data)
     setLoggedUser(loggedUserData.data)
 
     // * API Get My Following
 
     const myFollowingData = await psApi.getMyFollowing(token, { params: { size: 10, page: 1 } })
-    // console.log(myFollowingData.data.users)
-
     setLogin(true)
-
-    // window.location.reload()
   }
 
   async function handleEditData(e) {
     e.preventDefault()
-
-    // const user = JSON.parse(localStorage.getItem('user'))
 
     // * API Update User Profile
 
@@ -98,9 +91,7 @@ export default function ApiTest() {
       website: loggedWebsiteRef.current.value,
     }
 
-    // console.log(nameRef.current.value)
     const updateUserProfile = await psApi.updateUserProfile(data, token)
-    // console.log(updateUserProfile)
 
     // * Update User Data
     const loggedUser = await psApi.getLoggedUser(token)
@@ -112,7 +103,6 @@ export default function ApiTest() {
 
     // * API Logout User
     const logout = await psApi.logoutUser(token)
-    // console.log(logout)
     localStorage.clear()
     window.location.reload()
   }
@@ -133,11 +123,6 @@ export default function ApiTest() {
     const combines = dataUser.data
     combines.following = followingByUserIdData.data.users
     combines.followers = followersByUserIdData.data.users
-    // const combines = await [dataUser.data, {followers: followingByUserIdData.data.users}]
-    // const results = await Promise.all(combines)
-    // dataUser.data = [...dataUser.data, {followers: followingByUserIdData.data.users}]
-    // console.log(followingByUserIdData)
-    // console.log(combines)
     setUserById(combines)
   }
 
@@ -148,7 +133,6 @@ export default function ApiTest() {
       userIdFollow: id,
     }
     const responseFollow = await psApi.followUser(data, token)
-    // console.log(responseFollow)
 
     // * Update User Data
     const loggedUser = await psApi.getLoggedUser(token)
@@ -173,15 +157,10 @@ export default function ApiTest() {
   async function createPost(e) {
     e.preventDefault()
 
-    // console.log(images)
-
     const formData = new FormData()
     formData.append('image', images)
 
-    // console.log(Object.fromEntries(formData))
-
     const imageUrl = await psApi.uploadImage(formData, token)
-    // console.log(imageUrl)
 
     const data = {
       imageUrl: imageUrl.url,
@@ -216,7 +195,6 @@ export default function ApiTest() {
 
   async function getPostById(e, id) {
     e.preventDefault()
-    // const postId = getPostByIdRef.current.value
     const postId = id
 
     const getPostId = await psApi.getPostById(postId, token)
@@ -254,7 +232,6 @@ export default function ApiTest() {
     const userId = getPostByUserIdRef.current.value
 
     const getPostUserId = await psApi.getPostByUserId(userId, token, { params: { size: 10, page: 1 } })
-    // console.log(getPostUserId)
     setPostsByUserId(getPostUserId.data.posts)
   }
 
@@ -268,8 +245,6 @@ export default function ApiTest() {
 
     const createComment = await psApi.createComment(data, token)
     console.log(createComment)
-
-    // getPostByIdRef.current = createCommentPostIdRef.current.value
     getPostById(e, data.postId)
   }
 
@@ -277,7 +252,6 @@ export default function ApiTest() {
     async function getExplorePost() {
       const explorePost = await psApi.getExplorePost(token, { params: { size: 10, page: 1 } })
       setExplorerPost(explorePost.data.posts)
-      // console.log(explorePost.data.posts)
     }
     getExplorePost()
 

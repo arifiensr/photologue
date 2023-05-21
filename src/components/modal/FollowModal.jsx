@@ -2,7 +2,6 @@ import Follow from '../follow/Follow'
 import './followmodal.scss'
 
 export default function FollowModal({ user }) {
-  console.log(user.followers)
   return (
     <>
       {/* Followers Modal */}
