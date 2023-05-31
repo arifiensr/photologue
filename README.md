@@ -15,4 +15,6 @@ Hi! My name is **Muhammad Arifien Syachrizal**. I'm a student of [dibimbing.id](
  - SASS
  - Axios
  - React Router
+ - Moment.js
+ - Image-Conversion
  - dibimbing.id - Photo Sharing API
