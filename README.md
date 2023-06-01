@@ -10,6 +10,7 @@ Hi! My name is **Muhammad Arifien Syachrizal**. I'm a student of [dibimbing.id](
 
 ## Built with
 
+ - Vite
  - React JS
  - Bootstrap
  - SASS
