@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 
 import './App.scss'
 import Home from './pages/Home'
-import ApiTest from './pages/ApiTest'
 import { useContext } from 'react'
 import { GlobalContext } from './config/GlobalState'
 import Auth from './pages/Auth'
@@ -26,7 +25,6 @@ export default function App() {
           <Route path="/editprofile" element={<EditProfile />} />
         </Route>
       )}
-      <Route exact path="/apitest" element={<ApiTest />} />
     </Routes>
   )
 }
