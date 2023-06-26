@@ -4,6 +4,7 @@ import { useContext, useEffect } from 'react'
 import { GlobalContext } from '../config/GlobalState'
 import Auth from './Auth'
 import NavbarMobile from '../components/navbar/NavbarMobile'
+import CreatePostModal from '../components/modal/CreatePostModal'
 
 export default function Home() {
   const { isLogin } = useContext(GlobalContext)
@@ -52,6 +53,7 @@ export default function Home() {
             <button onClick={topFunction} id="back-to-top-button" title="Go to top">
               <i className="bx bx-chevron-up"></i>
             </button>
+            <CreatePostModal />
           </>
         )}
       </section>

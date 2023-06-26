@@ -9,6 +9,8 @@ export default function CreatePostModal() {
   const [imagesPreview, setImagesPreview] = useState()
   const createPostCaptionRef = useRef()
 
+  const token = JSON.parse(localStorage.getItem('token'))
+
   async function handleImages(e) {
     if (e.target.files[0].size > 900 * 900) {
       const compressedImageBlob = await compressAccurately(e.target.files[0], 900)

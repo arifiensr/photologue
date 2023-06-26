@@ -254,7 +254,7 @@ export default function PostModal({ post }) {
       </div>
 
       {/* Create Post */}
-      <div className="modal fade createPost" id={`createPostModal`} tabIndex={-1} aria-labelledby="createPostModalLabel" aria-hidden="true">
+      {/* <div className="modal fade createPost" id={`createPostModal`} tabIndex={-1} aria-labelledby="createPostModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
           <div className="modal-content border-primary">
             <div className="modal-header">
@@ -294,7 +294,7 @@ export default function PostModal({ post }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Update Post */}
       <div className="modal fade updatePost" id={`updatePostModal${postModal.id}`} tabIndex={-1} aria-labelledby={`updatePostModalLabel${postModal.id}`} aria-hidden="true">

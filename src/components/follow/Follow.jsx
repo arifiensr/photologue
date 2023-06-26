@@ -34,12 +34,18 @@ export default function Follow({ user }) {
   return (
     <section id="follows" className="follows">
       <div className="follow">
-        <Link to={`/u/${user.id}`} className="text-decoration-none">
+        {/* <Link to={`/u/${user.id}`} className="text-decoration-none">
           <div data-bs-dismiss="modal" aria-label="Close">
             <img src={user.profilePictureUrl} alt="" />
             <span>{user.username}</span>
           </div>
-        </Link>
+        </Link> */}
+        <a href={`/u/${user.id}`} className="text-decoration-none">
+          <div>
+            <img src={user.profilePictureUrl} alt="" />
+            <span>{user.username}</span>
+          </div>
+        </a>
         {user.id !== loggedUser.id ? (
           !isFollow ? (
             <>
@@ -55,9 +61,9 @@ export default function Follow({ user }) {
             </>
           )
         ) : (
-          <Link to={`/u/${loggedUser.id}`}>
-            <button className="ms-4 button-solid" data-bs-dismiss="modal" aria-label="Close">My Profile</button>
-          </Link>
+          <a href={`/u/${loggedUser.id}`}>
+            <button className="ms-4 button-solid">My Profile</button>
+          </a>
         )}
       </div>
     </section>
