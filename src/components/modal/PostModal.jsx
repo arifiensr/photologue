@@ -209,7 +209,7 @@ export default function PostModal({ post }) {
                           </>
                         )}
                       </span>
-                      <span className="fw-light"> - {setTime(postModal.updatedAt)}</span>
+                      <span className="fw-light"> - {post.createdAt !== post.updatedAt ? 'Edited · ' : ''}{setTime(postModal.createdAt)}</span>
                     </p>
                   </div>
                   <div className="post__content-caption">

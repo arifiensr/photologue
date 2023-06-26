@@ -51,6 +51,12 @@ export default function Profile() {
       userById.data.totalPosts = userPosts.data.totalItems
       userById.data.posts = userPosts.data.posts
 
+      function sortByDate(a, b) {
+        return new Date(b.createdAt) - new Date(a.createdAt)
+      }
+
+      userById.data.posts.sort(sortByDate)
+
       setUserById(userById.data)
       setIsLoading(false)
     }

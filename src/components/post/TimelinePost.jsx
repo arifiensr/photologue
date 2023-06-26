@@ -133,7 +133,7 @@ export default function TimelinePost({ post }) {
                 </>
               )}
             </span>
-            <span className="fw-light"> - {setTime(post.updatedAt)}</span>
+            <span className="fw-light"> - {post.createdAt !== post.updatedAt ? 'Edited · ' : ''}{setTime(post.createdAt)}</span>
           </p>
         </div>
         <div className="timelinePost__content-caption">
