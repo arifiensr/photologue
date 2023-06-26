@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import { GlobalContext } from '../../config/GlobalState'
 import { HashLink } from 'react-router-hash-link'
 import { Tooltip } from 'react-tooltip'
+import PostModal from '../modal/PostModal'
 
 export default function Navbar() {
   const { loggedUser, setIsLogin } = useContext(GlobalContext)
@@ -80,7 +81,9 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <Tooltip id='tooltip-notification' place='top' className='tooltip-notification' openOnClick/>
+
+      <Tooltip id="tooltip-notification" place="top" className="tooltip-notification" openOnClick />
+      {/* <PostModal /> */}
     </section>
   )
 }
